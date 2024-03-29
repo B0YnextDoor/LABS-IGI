@@ -33,7 +33,7 @@ def start_task2(inputType: int) -> None:
         print('Filling an array (0 -> stop enter):')
         inputArray = task2.validateInput()
     else:
-        inputArray = int_sequence(validateSequenceSize('sequence'))
+        inputArray = list(int_sequence(validateSequenceSize('sequence')))
     task2.displayResults(inputArray)
 
 
@@ -65,7 +65,7 @@ and B are entered from the keyboard by the user)\nand the sum of the list elemen
     if (inputType == 1):
         collection = task5.validateInputArray()
     else:
-        collection = float_sequence(validateSequenceSize('sequence'))
+        collection = list(float_sequence(validateSequenceSize('sequence')))
     if collection is None:
         return 'stop'
     task5.analiseCollection(collection)
