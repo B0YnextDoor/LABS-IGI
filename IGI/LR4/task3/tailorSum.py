@@ -34,6 +34,5 @@ class TailorSum(RowAnaliser):
         params = super().__call__()
         if type(params) == str:
             return params
-        print(f'Mode: {params[2]}\n')
         return f'Additional parameters:\nArithmetics mean: {params[0]}\n\
-Median: {params[1]}\nVariance: {params[3]}\nStandard deviation: {params[4]}'
+Median: {params[1]}\nMode: {params[2]}\nVariance: {params[3]}\nStandard deviation: {params[4]}'
