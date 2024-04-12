@@ -1,5 +1,4 @@
-from collections import Counter
-from math import sqrt
+from statistics import fmean, median, mode, variance, stdev
 
 
 class RowAnaliser():
@@ -15,24 +14,15 @@ class RowAnaliser():
 
     def mean(self) -> float | str:
         ''' Method counts arithmetic mean of sequence. '''
-        return round(sum(self.row) / len(self.row), 4) if len(self.row) > 0 else 'Tailor\'s row is empty!'
+        return round(fmean(self.row), 4) if len(self.row) > 0 else 'Tailor\'s row is empty!'
 
     def median(self) -> float | str:
         ''' Method returns sequence median. '''
-        if len(self.row) == 0:
-            return 'Tailor\'s row is empty!'
-        sorted_row = sorted(self.row)
-        l = len(sorted_row)
-        return round(0.5*(sorted_row[l // 2 - 1] + sorted_row[l // 2]) if l % 2 == 0 else sorted_row[l // 2], 4)
+        return round(median(self.row), 4) if len(self.row) > 0 else 'Tailor\'s row is empty!'
 
-    def mode(self) -> str:
+    def mode(self) -> float | str:
         ''' Method returns sequence mode. '''
-        if len(self.row) == 0:
-            return 'Tailor\'s row is empty!'
-        value_counts = Counter(self.row)
-        max_count = max(value_counts.values())
-        return str([round(value, 4) for value,
-                    count in value_counts.items() if count == max_count])
+        return round(mode(self.row), 4) if len(self.row) > 0 else 'Tailor\'s row is empty!'
 
     def variance(self) -> float | str:
         ''' Method counts sequence variance. '''
@@ -40,8 +30,7 @@ class RowAnaliser():
             return 'Tailor\'s row is empty!'
         elif len(self.row) < 2:
             return 'Can\'t find variance. 2 and more elements needed.'
-        mean = self.mean()
-        return round(sum((s - mean) ** 2 for s in self.row) / len(self.row), 4)
+        return round(variance(self.row), 4)
 
     def stdev(self) -> float | str:
         ''' Method counts standart deviance of sequence. '''
@@ -49,4 +38,4 @@ class RowAnaliser():
             return 'Tailor\'s row is empty!'
         elif len(self.row) < 2:
             return 'Can\'t find standart deviance. 2 and more elements needed.'
-        return round(sqrt(self.variance()), 4)
+        return round(stdev(self.row), 4)

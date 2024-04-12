@@ -12,11 +12,14 @@ class Task1():
         ''' Runs class methods. '''
         self.printDictionary(dictionary)
         self.getLastWord(dictionary)
+        dictionary.sortDictionary()
+        self.printDictionary(dictionary, 'Sorted ')
+        self.getLastWord(dictionary)
         self.getWordInfo(dictionary)
 
-    def printDictionary(self, dictionary: CsvDictionary | PickleDictionary) -> None:
+    def printDictionary(self, dictionary: CsvDictionary | PickleDictionary, msg: str = '') -> None:
         ''' Method returns loaded from file dictionary. '''
-        print('Dictionary:')
+        print(f'{msg}Dictionary:')
         for words in dictionary.getDictionary().items():
             print(f'{words[0]} - {words[1]}')
         print()
