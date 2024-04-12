@@ -15,6 +15,10 @@ class BaseDictionary():
         ''' Method returns dictionary from the file. '''
         pass
 
+    def sortDictionary(self) -> None:
+        ''' Method sorts dictionary and rewrites it in the file. '''
+        pass
+
     def getLastSynonym(self) -> str:
         ''' Method returns last word-synonym from the dictionary. '''
         return list(self.getDictionary().values())[-1]
