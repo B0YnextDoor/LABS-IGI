@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/salecodes.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | About {% endblock %} 
+{% block content %}
+<div>
+	{% if form is None %}
+		{% if codes %}
+			{% if role == 'adm' %}
+				<h2>All sale codes</h2>
+				{% for code in codes %}
+			 		<div class="codescont">
+						<p>{{ code.order }}. {{ code.code }} - sale {{ code.sale }}% - 
+						<span style="color: darkmagenta;">
+							{% if code.is_active %}
+								Active
+							{% else %}
+								Disabled
+							{% endif %}
+						</span>
+						</p>
+						<form method="post">
+							{% csrf_token %}
+							{% if code.is_active %}
+								<button type="submit" name="action" value='upd_{{ code.id }}'>Disable</button>
+							{% else %}
+								<button type="submit" name="action" value='upd_{{ code.id }}'>Activate</button>
+							{% endif %}
+							<button type="submit" name="action" value="del_{{ code.id }}">Delete</button>
+						</form>
+					</div>
+				{% endfor %}
+			{% else %}
+				<h2 style="margin-bottom: 10px;">Current Sales</h2>
+				<div style="display: flex; flex-direction: column; gap:10px">
+					{% for code in codes %}
+					<p>{{ code.order }}. 
+						<a href="{% url 'catalog' %}" style="font-size: 20px; text-decoration: none; 
+						color:rgb(0, 55, 255); font-style: italic;">
+							{{ code.code }}
+						</a> - sale {{ code.sale }}%
+					</p>
+					{% endfor %}
+				</div>
+			{% endif %}
+		{% else %}
+			<h3 style="margin-bottom: 20px;">No sale codes!</h3>
+		{% endif %}
+		{% if role == 'adm'%}
+			<form class="add_code" action="" method="post">
+				{% csrf_token %}
+				<input type="submit" name="action" value="add">
+			</form>
+		{% endif %}
+	{% else %}
+		<form action="" method="post">
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			</table>
+			<input type="submit" name="action" value='save' />
+		</form>
+	{% endif %}
+</div>
+{% endblock %}

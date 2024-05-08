@@ -1,0 +1,42 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 20%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form > input {
+  outline: none;
+  width: 150px;
+  align-self: center;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form > div > div {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+form > table > tbody > tr {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: start;
+}
+
+form > table > tbody > tr > td > span {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-top: 2px;
+}

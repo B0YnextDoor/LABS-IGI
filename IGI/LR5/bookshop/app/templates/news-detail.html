@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/news.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | News {% endblock %} 
+{% block content %}
+<div>
+  {% if form is None %}
+		<div class="news_card">
+        	{%  if news.img %}
+				<img src="{{news.img.url}}" width="320px" height="320px" alt=""/>
+        	{% endif %}
+			<div>
+				<h2 style="margin-bottom: 10px;">{{news.title}}</h2>
+				<h3>{{news.text}}</h3>
+			</div>
+		</div>
+        {% if role == 'adm' %}
+        	<form method="post">
+          		{% csrf_token %}
+         		<button type="submit" name="action" value="upd">Update</button>
+				<button type="submit" name="action" value="del">Delete</button>
+        	</form>
+      	{% endif %}
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" name="action" value="save">Save</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}
