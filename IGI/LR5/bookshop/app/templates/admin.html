@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/admin.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Admin {% endblock %} 
+{% block content %}
+<div>
+	{% if role != 'adm'%}
+		<h2>Only admin can see this page</h2>
+	{% else %}
+		<div class="admincont">
+			<h2 style="margin-top: 5%;">Pricelist</h2>
+			<div class="pricelist">
+				{% if books %}
+					{% for book in books %}
+					<div class="book_card">
+						<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+						<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+						<p>Genre: {{book.genre.name}}</p>
+						{% if book.amount > 0 %}
+							<p>Amount of books: {{book.amount}}</p>
+						{% else %}
+							<p style="color: blue;">Out of stock!</p>
+						{% endif %}
+						<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
+					</div>
+					{% endfor %}
+				{% else %}
+					<h2>Catalog is empty!</h2>
+				{% endif %}
+			</div>
+			<h2>Customers Statistics</h2>
+			<div class="stats_list">
+				{% if customers %}
+					{% for city, users in customers.items %}
+						<div class="stats_card">
+							<span>{{ city }}:</span>
+							<div class="user_table_view">
+							{% for user in users %}
+								<div class="cust_card">
+									<h5>Name: {{ user.name }}</h5>
+									<h5>Phone: {{ user.phone }}</h5>
+									<h5>Email: {{ user.email }}</h5>
+								</div>
+							{% endfor%}
+						    </div>
+						</div>
+					{% endfor %}
+					<img src="{% static "images/customers_stat.jpg" %}" width="384px" height="288px" alt=""/>
+				{% else %}
+					<h2>No customers!</h2>
+				{% endif %}
+			</div>
+			<h2>Sales Statistics</h2>
+			<div class="sales_stat">
+				<div>
+					<h2>Most popular book(-s): <span>{{most.0.1}} sales</span></h2>
+					{% for book, sales in most %}
+						<div class="book_card">
+							<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+							<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+							<p>Genre: {{book.genre.name}}</p>
+							{% if book.amount > 0 %}
+								<p>Amount of books: {{book.amount}}</p>
+							{% else %}
+								<p style="color: blue;">Out of stock!</p>
+							{% endif %}
+							<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
+						</div>
+					{% endfor %}
+				</div>
+				{% if least %}
+					<div>
+						<h2>Least popular book(-s): <span>{{least.0.1}} sales</span></h2>
+						{% for book, sales in least %}
+							<div class="book_card">
+								<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+								<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+								<p>Genre: {{book.genre.name}}</p>
+								<p>Amount of books: {{book.amount}}</p>
+								<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
+							</div>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+			<h2>Month Statistics</h2>
+			<div class="stats_list">
+				{% for month, stats in month_stats.items %}
+					<div class="stats_card">
+						<span>{{ month }}:</span>
+						{% if stats %}
+						    <div class="book_table_view">
+							{% for book, sales in stats %}
+								<div class="book_card">
+									<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+									<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+									<p>Genre: {{book.genre.name}}</p>
+									<span style="font-weight: bold; letter-spacing: 1px;">
+										Amount of sales: {{ sales }}
+									</span>
+								</div>
+							{% endfor %}
+						    </div>
+						{% else %}
+							<p style="font-style: italic; align-self: center;">No statistics</p>
+						{% endif %}
+					</div>
+				{% endfor %}
+				<div style="display: flex; gap:20px">
+					<img src="{% static "images/month_volumes_stat.jpg" %}" width="384px" height="288px" alt=""/>
+					<img src="{% static "images/month_incomes_stat.jpg" %}" width="384px" height="288px" alt=""/>
+				</div>
+			</div>
+			<h2>Current year income: {{ income }} BYN</h2>
+			{% if forecast > 0 %}
+				<h2>Sales forecast: {{ forecast }} books</h2>
+				<img src="{% static "images/sales_trend.jpg" %}" width="384px" height="288px" alt=""/>
+			{% else %}
+				<h2>Not enough inforamtion to create a forecast</h2>
+			{% endif %}
+		</div>
+	{% endif %}
+</div>
+{% endblock %}

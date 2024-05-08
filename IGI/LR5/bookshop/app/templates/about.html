@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/about.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | About {% endblock %} 
+{% block content %}
+<div class="infocont">
+  {% if form is None %}
+      <h2 style="margin-bottom: 20px;">About Us</h2>
+      <h3>{{ info.info }}</h3>
+      {% if role == 'adm' %}
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" name="action" value="upd">Update info</button>
+        </form>
+      {% endif %}
+  {% else %}
+    <form method="post">
+        {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" name="action" value="save">Save</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

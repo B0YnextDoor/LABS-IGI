@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <link>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block styles %}{% endblock %}
+    <title>{% block title %}Bookshop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/global.css" %}" />
+  </head>
+  <body>
+    {% block sidebar %}
+    <div class="router">
+      <a href="{% url 'main' %}">
+        <img src="{% static "images/logo.jpg" %}" width="64" height="64"
+        alt="BOOKY" style="border-radius: 999%;"/>
+      </a>
+      <a href="{% url 'about' %}">About Us</a>
+      <a href="{% url 'news' %}">News</a>
+      <a href="{% url 'catalog' %}">Books</a>
+      <a href="{% url 'faq' %}">FAQ</a>
+      <a href="{% url 'contacts' %}">Contact Us</a>
+      <a href="{% url 'vacancies' %}">Vacancies</a>
+      <a href="{% url 'reviews' %}">Reviews</a>
+      <a href="{% url 'sale' %}">Sale codes</a>
+      <a href="{% url 'policy' %}">Privacy Policy</a>
+    </div>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    <div class="auth_btn">
+      <div>
+        {% if role == "adm" %}
+          <a href="{% url 'admin' %}">AdminPannel</a>
+        {% endif %}
+        {% if role != "usr" and role != "" %}
+          <a href="{% url 'order' %}">Orders</a>
+        {% endif %}
+      </div>
+      <div>
+      {% if role == "" %}
+        <a href="{% url 'signin' %}">SignIn</a> |
+        <a href="{% url 'signup' %}">SignUp</a>
+      {% else %}
+        <a href="{% url 'account' %}">Account</a>
+        <a href="{% url 'log-out' %}">LogOut</a>
+      {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

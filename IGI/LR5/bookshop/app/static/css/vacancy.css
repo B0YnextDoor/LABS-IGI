@@ -1,0 +1,25 @@
+.vac_card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px #a9a9a9;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+.vac_card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vac_card > div > h2 {
+  color: rgb(98, 130, 255);
+}
+
+.vac_card > div > p {
+  opacity: 0.6;
+}
