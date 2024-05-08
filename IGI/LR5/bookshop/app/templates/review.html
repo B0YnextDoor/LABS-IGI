@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/review.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Reviews {% endblock %} 
+{% block content %}
+<div>
+  {% if form is None %}
+  	<div style="margin-bottom: 20px;">
+		{% if role == 'usr' %}
+		  	<form method="post">
+				{% csrf_token %}
+				<button type="submit" name="action" value="add">Add Review</button>
+		  	</form>
+		{% elif role == '' %}
+		  	<form method="post">
+				{% csrf_token %}
+				<button type="submit" name="action" value="redir">Add Review</button>
+		  	</form>
+		{% endif %}
+	</div>
+      {% if reviews %}
+	  	<h2 style="margin-bottom: 20px;">Reviews</h2>
+	  	{% for rev in reviews %}
+			<div class="rev_card">
+				<div>
+					<h2>{{rev.user.name}}</h2>
+					<h4>Rate: {{rev.rate}}/5</h4>
+					<pre>{{rev.text}}</pre>
+					<p>{{rev.updated_at.date}}</p>
+				</div>
+				{% if role == 'usr' and email == rev.user.email %}
+					<form method="post">
+						{% csrf_token %}
+						<button type="submit" name="action" value='upd_{{ rev.id }}'>Update</button>
+						<button type="submit" name="action" value='del_{{ rev.id }}'>Delete</button>
+					</form>
+				{% endif %}
+			</div>
+		{% endfor %}
+	  {% else %}
+	  	<h2>No Reviews...</h2>
+	  {% endif %}
+  {% else %}
+    <form method="post">
+        {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" name="action" value="save_{{action}}">Save</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

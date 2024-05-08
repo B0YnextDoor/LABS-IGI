@@ -1,0 +1,11 @@
+.infocont {
+  margin-top: 3%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infocont > form > button {
+  padding: 5px;
+  margin-top: 10px;
+}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/account.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Account {% endblock %} 
+{% block content %}
+<div>
+	{% if form is None %}
+	 	<div class="user_info">
+			<div>
+				<h3>Name: {{user.name}}</h3>
+				<h3>Phone: {{user.phone}}</h>
+				<h3>Email: {{user.email}}</h3>
+			</div>
+			<form method="post">
+				{% csrf_token %}
+				<button type="submit" name="action" value="editMe">Edit</button>
+			</form>
+			<div style="margin-left: 10%;">
+				<h4>Time info</h4>
+				<p>Timezone: {{ user.tz }}</p>
+				<p>UTC date: {{ user.date_utc }}</p>
+				<p>Local date: {{ user.date_local }}</p>
+				<div style="margin-top: 20px;">
+					<h4>Calendar</h4>
+					<pre>{{ user.calendar }}</pre>
+				</div>
+			</div>
+		</div>
+		{% if role == 'usr' %}
+			<div class="order_list">
+				{% if user.orders %}
+					{% for order in user.orders %}
+					<div>
+						<a href="{{ order.method }}">Order {{ order.cl_id }}</a>
+						<ul>
+							{% for book in order.books %}
+							<li>
+								<p>{{ book.title }}</p>
+								<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+								<p>Genre: {{book.genre.name}}</p>
+								<span>Price: {{book.price}} BYN</span>
+							</li> 
+							{% endfor %}
+						</ul>
+						{% if order.status == '2' %}
+							<span style="color: rgb(4, 255, 0); font-weight: bold;">Canceled</span>
+						{% else %}
+							<h4>Delivery date: {{ order.date }}</h4>
+							<h4>Delivery address: {{ order.address }}</h4>
+							{% if order.status == '1'  %}
+								<span style="color: blue; font-weight: bold;">Delivered</span>
+							{% endif %}
+						{% endif %}
+					</div>
+					{% endfor %}
+				{% else %}
+				    <div>You haven't create any orders yet.</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% else %}
+		<form method="post">
+			{% csrf_token %}
+			<table>
+				{{ form.as_table }}
+			</table>
+			<button type="submit" name="action" value="saveMe">Save</button>
+		</form>
+	{% endif %}
+</div>
+{% endblock %}
