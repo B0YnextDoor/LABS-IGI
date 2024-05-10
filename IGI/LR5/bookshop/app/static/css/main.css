@@ -3,3 +3,20 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.news_card {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 60%;
+}
+
+.news_card > div > a {
+  color: #003560;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: none;
+}
