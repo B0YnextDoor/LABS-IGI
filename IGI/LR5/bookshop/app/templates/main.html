@@ -10,6 +10,21 @@
     <p style="margin-top: 20px; font-family: monospace;">
       Welcome to <em>BOOKY</em>, a very cool bookshop with your favourite authors!
     </p>
+    <h2 style="margin: 20px 0px;">Latest News</h2>
+    {% if n %}
+      <div class="news_card">
+        {%  if n.img %}
+          <img src="{{n.img.url}}" width="150px" height="150px" alt=""/>
+        {% endif %}
+        <div>
+          <h2>{{n.title}}</h2>
+          <h3 style="margin-bottom: 20px;">{{n.text}}</h3>
+          <a href="{{ n.method }}">Read more...</a>
+        </div>
+      </div>
+    {% else %}
+      <p>There are no news...</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

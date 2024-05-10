@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from app.core.validators import check_session
 from app.services.apiService import ApiService
+from app.services.commonService import NewsService
 
 
 def index(request):
     check_session(request.session)
-    return render(request, 'main.html', {'role': request.session['role']})
+    news = NewsService.get_all()
+    return render(request, 'main.html', {'role': request.session['role'], 'n': None if len(news) == 0 else news[0]})
 
 
 def policy(request):
