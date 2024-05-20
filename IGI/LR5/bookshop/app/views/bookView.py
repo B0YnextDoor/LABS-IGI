@@ -28,22 +28,26 @@ class BookView(View):
 
     def get(self, request):
         self.object_list = self.get_queryset()
+        if (request.session['role'] == 'usr' and request.session.get('cart') is None):
+            request.session['cart'] = []
+            request.session.save()
         if (request.GET.get('search')):
             self.object_list = list(filter(
                 lambda b: request.GET['search'] in b.title, list(self.object_list)))
-        return render(request, self.template_name, {'role': request.session['role'], 'book_list': self.object_list, 'form': None})
+        return render(request, self.template_name, {'role': request.session['role'], 'book_list': self.object_list, 'form': None, 'cart': request.session['cart']})
 
     def post(self, request):
         if (request.POST.get('action') is None):
             self.object_list = self.get_queryset(request.POST['sort_by'])
-            return render(request, self.template_name, {'role': request.session['role'], 'book_list': self.object_list, 'form': None})
+            return render(request, self.template_name, {'role': request.session['role'], 'book_list': self.object_list, 'form': None, 'cart': request.session['cart']})
         form = None
         if request.session.get('role') != 'adm':
             return redirect('catalog')
         if (request.POST.get('action') == 'create'):
             return render(request, self.template_name, {'role': request.session['role'],
                                                         'book_list': None,
-                                                        'form': BookDetailForm()})
+                                                        'form': BookDetailForm(),
+                                                        'cart': []})
         form = BookDetailForm(request.POST)
         if form.is_valid():
             try:
@@ -55,7 +59,7 @@ class BookView(View):
             except:
                 form.add_error(None, 'Creation error!')
         return render(request, self.template_name, {'role': request.session['role'],
-                                                    'book_list': None, 'form': form})
+                                                    'book_list': None, 'form': form, 'cart': []})
 
 
 class BookDetailView(View):

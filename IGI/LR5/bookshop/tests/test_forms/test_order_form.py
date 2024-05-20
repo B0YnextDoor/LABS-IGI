@@ -49,7 +49,6 @@ class OrderFormTest(TestCase):
         self.form_data['books'] = list()
         form = OrderForm(data=self.form_data)
         self.assertFalse(form.is_valid())
-        print(form.errors)
         self.assertEquals(form.errors['books'], ['Choose at least 1 book'])
 
     def test_form_invalid_address(self):
