@@ -79,8 +79,16 @@ class OrderView(View):
         role = request.session.get('role')
         if check_response(email, request) or role != 'usr':
             return redirect('main')
-        if (request.POST.get('action') == 'buy'):
-            form = OrderForm()
+        if ('buy' in request.POST.get('action')):
+            id = request.POST['action'].split('_')[1]
+            if id not in request.session['cart']:
+                request.session['cart'].append(id)
+                request.session.save()
+            return redirect('catalog')
+        elif (request.POST.get('action') == 'cart'):
+            books = request.session['cart']
+            print(books)
+            form = OrderForm(initial={'books': books})
             return render(request, self.template_name, {'role': role, 'form': form, 'orders': None})
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -93,6 +101,7 @@ class OrderView(View):
                     email, form.cleaned_data['books'], form.cleaned_data['date'], form.cleaned_data['address'], sale
                 )
                 if order is not None:
+                    request.session['cart'] = []
                     return redirect('account')
                 form.add_error(None, "Order creation error!")
             except:

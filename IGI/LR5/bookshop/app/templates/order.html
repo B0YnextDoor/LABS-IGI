@@ -58,16 +58,18 @@
 </div>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-		var checkboxes = document.querySelectorAll('#orderForm input[type=checkbox]');
-		checkboxes.forEach(function(checkbox) {
-			checkbox.addEventListener('change', function() {
-				var total = 0;
-				document.querySelectorAll('#orderForm input[type=checkbox]:checked').forEach(function(checkedBox) {
-					total += parseFloat(checkedBox.dataset.price);
-				});
-				document.getElementById('totalPrice').textContent = total;
-			});
-		});
-	});
+	    var checkboxes = document.querySelectorAll('#orderForm input[type=checkbox]');
+	    checkboxes.forEach(function(checkbox) {
+		    checkbox.addEventListener('change', updateTotalPrice);
+        });
+	    updateTotalPrice();
+    });
+    function updateTotalPrice() {
+	    var total = 0;
+	    document.querySelectorAll('#orderForm input[type=checkbox]:checked').forEach(function(checkedBox) {
+		    total += parseFloat(checkedBox.dataset.price);
+	    });
+	    document.getElementById('totalPrice').textContent = total;
+    }
 </script>
 {% endblock %}

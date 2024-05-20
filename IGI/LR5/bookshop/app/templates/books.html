@@ -42,6 +42,11 @@
 						{% csrf_token %}
 						<button type="submit" name="action" value="create" style="padding: 5px; text-transform: capitalize;">Add Book</button>
 					</form>
+				{% elif role == 'usr' and cart %}
+					<form method="post" action="/orders/" style="position: absolute; top: 0; right: 0;">
+						{% csrf_token %}
+						<button type="submit" name="action" value="cart" style="padding: 5px 15px; text-transform: capitalize;">Cart</button>
+					</form>
 				{% endif %}
 			</div>
     	{% else %}

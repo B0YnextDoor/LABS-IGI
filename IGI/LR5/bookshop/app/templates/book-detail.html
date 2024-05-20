@@ -17,9 +17,9 @@
 			{% if role == 'usr' %}
 			<form method="post" action="/orders/">
 				{% csrf_token %}
-				<button type="submit" name="action" value="buy">
+				<button type="submit" name="action" value="buy_{{ book.id }}">
 					{{book.price}} BYN<br/>
-					Buy Now
+					Add to Cart
 				</button>
 			</form>
 			{% endif %}

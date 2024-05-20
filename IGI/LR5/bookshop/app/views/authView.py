@@ -4,15 +4,27 @@ from django.views import View
 from app.app_models.customerModel import Customer
 from app.core.validators import phone_validator, password_validator, check_session
 from app.services.authService import AuthService
+from datetime import datetime
 
 
 class SignUpForm(forms.ModelForm):
-    confirmation = forms.BooleanField(
-        help_text='I confirm that I am over 18 years old.', required=True)
+    confirmation = forms.DateField(
+        required=True, help_text='I confirm that I am over 18 years old.', widget=forms.widgets.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'yyyy-mm-dd',
+            }
+        ))
 
     def clean(self):
         phone_validator(self.cleaned_data['phone'], self)
         password_validator(self.cleaned_data['password'], self)
+        today = datetime.today()
+        birthday = self.cleaned_data['confirmation']
+        age = today.year - birthday.year - \
+            ((today.month, today.day) < (birthday.month, birthday.day))
+        if (age < 18):
+            self.add_error(None, 'Customers must be 18+!')
         return self.cleaned_data
 
     class Meta:
@@ -52,7 +64,9 @@ class SignUpView(View):
                 elif user is not None:
                     request.session['role'] = 'usr'
                     request.session['user'] = user.email
+                    request.session['cart'] = []
                     request.session.modified = True
+                    request.session.save()
                     return redirect('main')
                 else:
                     form.add_error(None, 'Sign Up error!')
@@ -76,6 +90,7 @@ class SignInView(View):
                     request.session['role'] = role
                     request.session['user'] = user.email
                     request.session.modified = True
+                    request.session.save()
                     return redirect('main')
                 form.add_error(None, 'Wrong email or password!')
             except:
