@@ -112,7 +112,7 @@ class AdminService:
 
     @staticmethod
     def get_year_income():
-        return float(sum([order['price'] for order in AdminService.orders if order['created_at'].year == datetime.now().year]))
+        return round(float(sum([order['price'] for order in AdminService.orders if order['created_at'].year == datetime.now().year])), 2)
 
     @staticmethod
     def get_forecast():
