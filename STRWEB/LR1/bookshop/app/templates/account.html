@@ -5,19 +5,19 @@
 {% endblock %} 
 {% block title %} Bookshop | Account {% endblock %} 
 {% block content %}
-<article>
+<section>
 	{% if form is None %}
 	 	<section class="user_info">
-			<section>
+			<article>
 				<h3>Name: {{user.name}}</h3>
 				<h3>Phone: {{user.phone}}</h>
 				<h3>Email: {{user.email}}</h3>
-			</section>
+			</article>
 			<form method="post">
 				{% csrf_token %}
 				<button type="submit" name="action" value="editMe">Edit</button>
 			</form>
-			<section style="margin-left: 10%;">
+			<article style="margin-left: 10%;">
 				<h4>Time info</h4>
 				<p>Timezone: <time>{{ user.tz }}</time></p>
 				<p>UTC date: <time>{{ user.date_utc }}</time></p>
@@ -26,13 +26,13 @@
 					<h4>Calendar</h4>
 					<pre>{{ user.calendar }}</pre>
 				</section>
-			</section>
+			</article>
 		</section>
 		{% if role == 'usr' %}
 			<section class="order_list">
 				{% if user.orders %}
 					{% for order in user.orders %}
-					<div>
+					<article>
 						<a href="{{ order.method }}">Order {{ order.cl_id }}</a>
 						<ul>
 							{% for book in order.books %}
@@ -54,7 +54,7 @@
 								<p style="color: blue;"><strong>Delivered</strong></p>
 							{% endif %}
 						{% endif %}
-					</div>
+					</article>
 					{% endfor %}
 				{% else %}
 				    <section>You haven't create any orders yet.</section>
@@ -70,5 +70,5 @@
 			<button type="submit" name="action" value="saveMe">Save</button>
 		</form>
 	{% endif %}
-</article>
+</section>
 {% endblock %}

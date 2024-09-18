@@ -38,7 +38,7 @@ def ListingExample():
 	<p>for more info click <a href="#info">here</a></p>
  </section>
  <section translate="yes">
-	<dfn title="Python programming language">Python</dfn> is a high-level, general-purpose programming language
+	<dfn title="a high-level, general-purpose programming language">Python</dfn> is used everywhere nowadays.
  </section>
  <section>
 	<q>Accept who you are. Unless you’re a serial killer.</q>
@@ -73,6 +73,11 @@ def ListingExample():
  </section>
  <section>
 	<ol type="A">
+		<li>first</li>
+		<li>second</li>
+		<li>third</li>
+	</ol>
+	<ol type="I" reversed>
 		<li>first</li>
 		<li>second</li>
 		<li>third</li>
@@ -137,6 +142,14 @@ def ListingExample():
     </table>
  </section>
  <section>
+	<h2>Адаптивный котик</h2>
+	<img src="{% static 'images/cat-360px.png' %}" alt="Котик." 
+	srcset="{% static 'images/cat-360px.png' %} 360w, 
+			{% static 'images/cat-720px.png' %} 720w, 
+			{% static 'images/cat-1080px.png' %} 1080w"
+	sizes="(max-width: 360px) 360px, (max-width: 720px) 720px, 1080px">
+ </section>
+ <section>
 	<form id="registrationForm" method="post">
         <h2>Регистрация</h2>
 		{% csrf_token %}
@@ -166,7 +179,8 @@ def ListingExample():
  {% endif %}
  <section>
 	<form id="surveyForm" method="post" enctype="multipart/form-data" accept="image/jpeg,image/png,image/gif">
-        <h2>Опрос</h2>
+        <fieldset style="padding: 5px; display: flex; flex-direction: column; gap: 10px;">
+			<legend>Опрос</legend>
 		{% csrf_token %}
         <label for="photo">Фото:</label>
         <input type="file" id="photo" name="photo" required />
@@ -206,6 +220,7 @@ def ListingExample():
 		  </fieldset>
         <button type="submit" name="action" value="form2">Отправить опрос</button>
 		<input type="reset" name="reset"/>
+	</fieldset>
 	</form>
  </section>
  {% if form2 %}
@@ -258,18 +273,6 @@ def ListingExample():
 	<pre>Message: {{form3.message}}</pre>
  </section>
  {% endif %}
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <p><a id="info"></a>БГУИР - ведущее высшее учебное заведение Республики Беларусь в области информационных технологий, радиотехники, электроники и телекоммуникаций, расположенное в Минске.</p>
+ <p style="margin-top: 600px;"><a id="info"></a>БГУИР - ведущее высшее учебное заведение Республики Беларусь в области информационных технологий, радиотехники, электроники и телекоммуникаций, расположенное в Минске.</p>
 </article>
 {% endblock %}

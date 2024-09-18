@@ -5,7 +5,7 @@
 {% endblock %} 
 {% block title %} Bookshop | Admin {% endblock %} 
 {% block content %}
-<article>
+<section>
 	{% if role != 'adm'%}
 		<h2>Only admin can see this page</h2>
 	{% else %}
@@ -14,7 +14,7 @@
 			<section class="pricelist">
 				{% if books %}
 					{% for book in books %}
-					<div class="book_card">
+					<article class="book_card">
 						<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
 						<p>Author: {{book.author.surname}} {{book.author.name}}</p>
 						<p>Genre: {{book.genre.name}}</p>
@@ -24,7 +24,7 @@
 							<span style="color: blue;">Out of stock!</span>
 						{% endif %}
 						<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
-					</div>
+					</article>
 					{% endfor %}
 				{% else %}
 					<h2>Catalog is empty!</h2>
@@ -34,7 +34,7 @@
 			<section class="stats_list">
 				{% if customers %}
 					{% for city, users in customers.items %}
-						<div class="stats_card">
+						<article class="stats_card">
 							<p>{{ city }}:</p>
 							<section class="user_table_view">
 							{% for user in users %}
@@ -45,7 +45,7 @@
 								</section>
 							{% endfor%}
 						    </section>
-						</div>
+						</article>
 					{% endfor %}
 					<figure>
 						<img src="{% static "images/customers_stat.jpg" %}" width="384px" height="288px" alt=""/>
@@ -60,7 +60,7 @@
 				<section>
 					<h2>Most popular book(-s): <span>{{most.0.1}} sales</span></h2>
 					{% for book, sales in most %}
-						<div class="book_card">
+						<article class="book_card">
 							<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
 							<p>Author: {{book.author.surname}} {{book.author.name}}</p>
 							<p>Genre: {{book.genre.name}}</p>
@@ -70,20 +70,20 @@
 								<p style="color: blue;">Out of stock!</p>
 							{% endif %}
 							<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
-						</div>
+						</article>
 					{% endfor %}
 				</section>
 				{% if least %}
 					<section>
 						<h2>Least popular book(-s): <span>{{least.0.1}} sales</span></h2>
 						{% for book, sales in least %}
-							<div class="book_card">
+							<article class="book_card">
 								<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
 								<p>Author: {{book.author.surname}} {{book.author.name}}</p>
 								<p>Genre: {{book.genre.name}}</p>
 								<p>Amount of books: {{book.amount}}</p>
 								<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
-							</div>
+							</article>
 						{% endfor %}
 					</section>
 				{% endif %}
@@ -91,25 +91,25 @@
 			<h2>Month Statistics</h2>
 			<section class="stats_list">
 				{% for month, stats in month_stats.items %}
-					<div class="stats_card">
+					<section class="stats_card">
 						<span>{{ month }}:</span>
 						{% if stats %}
-						    <div class="book_table_view">
+						    <section class="book_table_view">
 							{% for book, sales in stats %}
-								<div class="book_card">
+								<article class="book_card">
 									<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
 									<p>Author: {{book.author.surname}} {{book.author.name}}</p>
 									<p>Genre: {{book.genre.name}}</p>
 									<span style="font-weight: bold; letter-spacing: 1px;">
 										Amount of sales: {{ sales }}
 									</span>
-								</div>
+								</article>
 							{% endfor %}
-						    </div>
+						    </section>
 						{% else %}
 							<p style="font-style: italic; align-self: center;">No statistics</p>
 						{% endif %}
-					</div>
+					</section>
 				{% endfor %}
 				<section style="display: flex; gap:20px">
 					<figure>
@@ -134,5 +134,5 @@
 			{% endif %}
 		</section>
 	{% endif %}
-</article>
+</section>
 {% endblock %}

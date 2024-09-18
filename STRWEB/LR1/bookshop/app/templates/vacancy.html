@@ -5,12 +5,12 @@
 {% endblock %} 
 {% block title %} Bookshop | Vacancies {% endblock %} 
 {% block content %}
-<article>
+<section>
   {% if form is None %}
       {% if vacancies %}
 	  	<h2 style="margin-bottom: 20px;">Vacancies</h2>
 	  	{% for vac in vacancies %}
-			<div class="vac_card">
+			<article class="vac_card">
 				<section>
 					<h2>{{vac.name}}</h2>
 					<pre>{{vac.description}}</pre>
@@ -23,7 +23,7 @@
 						<button type="submit" name="action" value='del_{{ vac.id }}'>Delete</button>
 					</form>
 				{% endif %}
-			</div>
+			</article>
 		{% endfor %}
 	  {% else %}
 	  	<h2>No Vacancies...</h2>
@@ -43,5 +43,5 @@
       <button type="submit" name="action" value="save_{{action}}">Save</button>
     </form>
   {% endif %}
-</article>
+</section>
 {% endblock %}

@@ -5,17 +5,19 @@
 {% endblock %} 
 {% block title %} Bookshop | Orders {% endblock %} 
 {% block content %}
-<article class="ordercont">
+<section class="ordercont">
 	{% if form is None %}
 	<section class="order_list">
 		{% if orders %}
 			{% for order in orders %}
-			<div>
+			<article>
 				<h2>Order {{ order.id }}</h2>
 				<h4>Customer Info:</h4>
-				<h5>Name: {{ order.customer.name }}</h5>
-				<h5>Phone: {{ order.customer.phone }}</h5>
-				<h5>Email: {{ order.customer.email }}</h5>
+				<hgroup>
+					<h5>Name: {{ order.customer.name }}</h5>
+					<h5>Phone: {{ order.customer.phone }}</h5>
+					<h5>Email: {{ order.customer.email }}</h5>
+				</hgroup>
 				<ul>
 					{% for book in order.books %}
 					<li>
@@ -39,7 +41,7 @@
 				{% else %}
 					<span style="color: rgb(0, 255, 0);"><strong>Canceled</strong></span>
 				{% endif %}
-			</div>
+			</article>
 			{% endfor %}
 		{% else %}
 			<div>No orders.</div>
@@ -57,7 +59,7 @@
 	</form>
 	<a href="{% url 'cart' %}" style="text-decoration: none; cursor: pointer; color: #111;"> <---- Back to Cart</a>
 	{% endif %}
-</article>
+</section>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 	    var checkboxes = document.querySelectorAll('#orderForm input[type=checkbox]');
