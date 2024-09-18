@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Paul Krasyov">
+    <meta name="creator" content="Paul Krasyov">
+    <meta name="description" content="this application was done to learn DJANGO HTML CSS & JS">
+    <meta name="keywords" 
+             content="Книги, покупки, покупка книг, Пушкин, Толстой, русская классика, литература" />
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block styles %}{% endblock %}
+    <title>{% block title %}Bookshop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/global.css" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
+  </head>
+  <body>
+    <header class="header">
+      <section>
+        <a href="{% url 'main' %}">
+          <img src="{% static "about/logo.jpg" %}" width="64" height="64"
+          alt="BOOKY" style="border-radius: 999%;"/>
+        </a>
+      </section>
+      <nav>
+        {% if role == "adm" %}
+          <a href="{% url 'admin' %}">AdminPannel</a>
+        {% endif %}
+        {% if role != "usr" and role != "" %}
+          <a href="{% url 'order' %}">Orders</a>
+        {% endif %}
+        {% if role == "" %}
+         <a href="{% url 'signin' %}">SignIn</a> |
+         <a href="{% url 'signup' %}">SignUp</a>
+        {% else %}
+          {% if role == 'usr' %}
+          <a href="{% url 'cart' %}" style="display: flex; align-items: center; gap: 10px;">
+            <img src="{% static "images/cart.svg" %}" alt="cart" width="20" height="20" />
+            Cart
+          </a>
+          {% endif %}
+          <a href="{% url 'account' %}">Account</a>
+          <a href="{% url 'log-out' %}">LogOut</a>
+        {% endif %}
+      </nav>
+    </header>
+    <main class="main-container">
+      {% block sidebar %}
+      <nav class="router">
+        <a href="{% url 'about' %}">About Us</a>
+        <a href="{% url 'news' %}">News</a>
+        <a href="{% url 'catalog' %}">Books</a>
+        <a href="{% url 'faq' %}">FAQ</a>
+        <a href="{% url 'contacts' %}">Contact Us</a>
+        <a href="{% url 'vacancies' %}">Vacancies</a>
+        <a href="{% url 'reviews' %}">Reviews</a>
+        <a href="{% url 'sale' %}">Sale codes</a>
+        <a href="{% url 'policy' %}">Privacy Policy</a>
+        <a href="{% url 'sandbox' %}">Sandbox</a>
+      </nav>
+      {% endblock %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

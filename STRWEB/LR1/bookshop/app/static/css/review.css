@@ -1,0 +1,24 @@
+.rev_card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+.rev_card > section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rev_card > section > h2 {
+  color: rgb(98, 130, 255);
+}
+
+.rev_card > section > p {
+  opacity: 0.6;
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/books.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Details {% endblock %} 
+{% block content %}
+<article>
+	{% if role == '' %}
+		<h2 style="font-family: monospace; font-weight: bold;">SignIn or SignUp to see this page!</h2>
+	{% elif form is None %}
+	    <section class="book_card_detail">
+    		<h2 style="margin-bottom: 20px;">{{book.title}}</h2>
+			<h3>{{book.author.surname}} {{book.author.name}}</h3>
+			<h3>{{book.genre.name}}</h3>
+			{% if book.amount > 0 %}
+					<h2 style="font-family: monospace;"><strong>{{book.amount}}</strong> left!</h2>
+			{% else %}
+					<h2 style="color: blue;">Out of stock!</h2>
+			{% endif %}
+			{% if role == 'usr' and book.amount > 0 %}
+			<form method="post" action="/orders/">
+				{% csrf_token %}
+				<button type="submit" name="action" value="buy_{{ book.id }}">
+					{{book.price}} BYN
+					<section style="display: flex; align-items: center; gap: 10px;">
+						Add to Cart
+						<img src="{% static "images/cart.svg" %}" alt="cart" width="20" height="20" />
+				 	</section>
+				</button>
+			</form>
+			{% endif %}
+			{% if role == 'adm' %}
+				<form class="admin_book_actions" method="post">
+					{% csrf_token %}
+					<button type="submit" name="action" value="edit">Edit</button>
+					<button type="submit" name="action" value="del">Delete</button>
+				</form>
+			{% endif %}
+		</section>
+	{% else %}
+		<form action="" method="post">
+			{% csrf_token %}
+			<table>
+			{{ form.as_table }}
+			</table>
+			<input type="submit" name="action" value='save' style="padding: 5px; text-transform: capitalize;" />
+		</form>
+	{% endif %}
+</article>
+{% endblock %}

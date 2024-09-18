@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/news.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | News {% endblock %} 
+{% block content %}
+<article>
+  {% if form is None %}
+      {% if news %}
+	  	<h2 style="margin-bottom: 20px;">News</h2>
+	  	{% for n in news %}
+			<div class="news_card">
+        {%  if n.img %}
+				  <img src="{{n.img.url}}" width="150px" height="150px" alt=""/>
+        {% endif %}
+				<section>
+					<h2>{{n.title}}</h2>
+					<h3 style="margin-bottom: 20px;">{{n.text}}</h3>
+					<a href="{{ n.method }}">Read more...</a>
+				</section>
+			</div>
+		{% endfor %}
+	  {% else %}
+	  	<h2>No news...</h2>
+	  {% endif %}
+      {% if role == 'adm' %}
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" name="action" value="add">Add news</button>
+        </form>
+      {% endif %}
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" name="action" value="save">Save</button>
+    </form>
+  {% endif %}
+</article>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/about.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | About {% endblock %} 
+{% block content %}
+<article class="infocont">
+  {% if form is None %}
+      <h2>About Us</h2>
+      <section style="display: flex; align-items: start; gap: 10px;">
+        <img src="{{info.logo.url}}" alt="logo" width="150" style="border-radius: 8px;"/>
+        <section>
+          <h3>{{ info.info }}</h3>
+          <section style="display: flex; justify-content: end;"></section>
+            {% if role == 'adm' %}
+              <form method="post">
+                 {% csrf_token %}
+                 <button type="submit" name="action" value="upd">Update info</button>
+              </form>
+            {% endif %}
+          </section>
+        </section>
+      </section>
+      <section>
+        <h2>Video about us</h2>
+        <video width="600" height="340" controls muted poster="{% static "images/poster.jpg" %}">
+            <source src="{{info.video.url}}" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+      </section>
+      <section>
+        <h2>Our history</h2>
+        <pre>{{info.history}}</pre>
+     </section>
+     <section>
+        <h2>Shop requisites</h2>
+        <pre>{{info.requisites}}</pre>
+    </section>
+    <section>
+      <h2>Certificate</h2>
+      <h4>ЕДИНЫЙ РЕЕСТР КНИЖНЫХ МАГАЗИНОВ</h4>
+      <h3>СВИДЕТЕЛЬСТВО</h3>
+      <h4>Общество с ограниченной ответственностью `BOOKY`</h4>
+      <p>(ИНН 1337228007)</p>
+      <pre>{{ info.certificate }}</pre>
+    </section>
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" name="action" value="save">Save</button>
+    </form>
+  {% endif %}
+</article>
+{% endblock %}
