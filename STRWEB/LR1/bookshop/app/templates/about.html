@@ -5,14 +5,14 @@
 {% endblock %} 
 {% block title %} Bookshop | About {% endblock %} 
 {% block content %}
-<article class="infocont">
+<section class="infocont">
   {% if form is None %}
       <h2>About Us</h2>
       <section style="display: flex; align-items: start; gap: 10px;">
         <img src="{{info.logo.url}}" alt="logo" width="150" style="border-radius: 8px;"/>
         <section>
           <h3>{{ info.info }}</h3>
-          <section style="display: flex; justify-content: end;"></section>
+          <section style="display: flex; justify-content: end;">
             {% if role == 'adm' %}
               <form method="post">
                  {% csrf_token %}
@@ -36,7 +36,7 @@
      <section>
         <h2>Shop requisites</h2>
         <pre>{{info.requisites}}</pre>
-    </section>
+     </section>
     <section>
       <h2>Certificate</h2>
       <h4>ЕДИНЫЙ РЕЕСТР КНИЖНЫХ МАГАЗИНОВ</h4>
@@ -54,5 +54,5 @@
       <button type="submit" name="action" value="save">Save</button>
     </form>
   {% endif %}
-</article>
+</section>
 {% endblock %}

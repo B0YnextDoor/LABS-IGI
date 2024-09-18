@@ -5,7 +5,7 @@
 {% endblock %} 
 {% block title %} Bookshop | Catalog {% endblock %} 
 {% block content %}
-<article>
+<section>
 	{% if form is None %}
     	<h1 style="margin-bottom: 20px;">Books Catalog</h1>
 		<form method="get">
@@ -16,7 +16,7 @@
 	    	<section style="display: flex; gap: 10px; width: 100%; position: relative;">
 				<section style="width: 80%;">
       				{% for book in book_list %}
-						<div class="book_card">
+						<article class="book_card">
 							<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
 							<p>Author: {{book.author.surname}} {{book.author.name}}</p>
 							<p>Genre: {{book.genre.name}}</p>
@@ -26,7 +26,7 @@
 								<p style="color: blue;">Out of stock!</p>
 							{% endif %}
 							<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
-	    				</div> 
+						</article> 
       				{% endfor %}
 				</section>
 				<section class="sort_books">
@@ -56,5 +56,5 @@
 			<input type="submit" name="action" value='save' style="padding: 5px; text-transform: capitalize;" />
 		</form>
 	{% endif %}
-</article>
+</section>
 {% endblock %}

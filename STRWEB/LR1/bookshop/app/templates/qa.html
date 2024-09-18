@@ -6,12 +6,12 @@
 {% endblock %} 
 {% block title %} Bookshop | FAQ {% endblock %} 
 {% block content %}
-<article>
+<section>
   {% if form is None %}
       {% if qas %}
 	  	<h2 style="margin-bottom: 20px;">FAQ</h2>
 	  	{% for qa in qas %}
-			<div class="qa_card">
+			<article class="qa_card">
 				<section>
 					<details class="faq-question">
 						<summary><b>{{qa.question}}</b></summary>
@@ -26,7 +26,7 @@
 						<button type="submit" name="action" value='del_{{ qa.id }}'>Delete</button>
 					</form>
 				{% endif %}
-			</div>
+			</article>
 		{% endfor %}
 	  {% else %}
 	  	<h2>No FAQ...</h2>
@@ -46,5 +46,5 @@
       <button type="submit" name="action" value="save_{{action}}">Save</button>
     </form>
   {% endif %}
-</article>
+</section>
 {% endblock %}

@@ -8,7 +8,7 @@
   max-width: 60%;
 }
 
-.news_card > section > a {
+.news_card > article > a {
   color: #003560;
   font-style: italic;
   font-weight: bold;
