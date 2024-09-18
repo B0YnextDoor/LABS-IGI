@@ -1,0 +1,27 @@
+.codescont {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #919191;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  gap: 10px;
+  width: 40%;
+}
+
+.codescont > form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: -10px;
+}
+.codescont > form > button {
+  padding: 5px;
+  text-transform: capitalize;
+}
+
+.add_code > input {
+  padding: 5px;
+  text-transform: capitalize;
+}

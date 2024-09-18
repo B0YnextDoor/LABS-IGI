@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/order.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Orders {% endblock %} 
+{% block content %}
+<article class="ordercont">
+	{% if form is None %}
+	<section class="order_list">
+		{% if orders %}
+			{% for order in orders %}
+			<div>
+				<h2>Order {{ order.id }}</h2>
+				<h4>Customer Info:</h4>
+				<h5>Name: {{ order.customer.name }}</h5>
+				<h5>Phone: {{ order.customer.phone }}</h5>
+				<h5>Email: {{ order.customer.email }}</h5>
+				<ul>
+					{% for book in order.books %}
+					<li>
+						<p>{{ book.title }}</p>
+						<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+						<p>Genre: {{book.genre.name}}</p>
+						<p>Ammount: {{book.quantity}}</p>
+						<span>Unit price: {{book.price}} BYN</span>
+					</li> 
+					{% endfor %}
+				</ul>
+				{% if order.status != '2' %}
+					<h4>Order date: {{ order.created_at }}</h4>
+					<h4>Delivery date: {{ order.date }}</h4>
+					<h4>Delivery address: {{ order.address }}</h4>
+					<h4>Sale: {{ order.sale }}%</h4>
+					<h4>Order price: {{ order.price}} BYN</h4>
+					{% if order.status == '1' %}
+						<span style="color: blue;"><strong>Delivered</strong></span>
+					{% endif %}
+				{% else %}
+					<span style="color: rgb(0, 255, 0);"><strong>Canceled</strong></span>
+				{% endif %}
+			</div>
+			{% endfor %}
+		{% else %}
+			<div>No orders.</div>
+		{% endif %}
+	</section>
+	{% else %}
+	<form id="orderForm" method="post">
+		{% csrf_token %}
+		<h2>Order payment</h2>
+		<table>
+			{{ form.as_table }}
+		</table>
+		<p style="font-weight: bold; align-self: flex-end;">TOTAL PRICE: <span id="totalPrice">0</span> BYN</p>
+		<button type="submit" name="action" value="create">Create Order</button>
+	</form>
+	<a href="{% url 'cart' %}" style="text-decoration: none; cursor: pointer; color: #111;"> <---- Back to Cart</a>
+	{% endif %}
+</article>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	    var checkboxes = document.querySelectorAll('#orderForm input[type=checkbox]');
+	    checkboxes.forEach(function(checkbox) {
+		    checkbox.addEventListener('change', updateTotalPrice);
+        });
+	    updateTotalPrice();
+    });
+    function updateTotalPrice() {
+	    var total = 0;
+	    document.querySelectorAll('#orderForm input[type=checkbox]:checked').forEach(function(checkedBox) {
+		    total += parseFloat(checkedBox.dataset.price);
+	    });
+	    document.getElementById('totalPrice').textContent = total;
+    }
+</script>
+{% endblock %}

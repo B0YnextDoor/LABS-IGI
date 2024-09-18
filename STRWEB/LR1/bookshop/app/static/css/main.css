@@ -1,0 +1,31 @@
+.maincont {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.news-section {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 10px;
+}
+
+.news_card {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.news_card > section > a {
+  color: #003560;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.part_list > a {
+  text-decoration: none;
+}

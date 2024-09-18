@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  padding: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: #efefef;
+}
+
+form > button {
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.router {
+  grid-column: 1;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  padding: 5px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.router > a,
+.header > section > a,
+.header > nav > a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #111;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 15% 85%;
+}

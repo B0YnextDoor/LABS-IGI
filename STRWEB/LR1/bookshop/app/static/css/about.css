@@ -1,0 +1,22 @@
+.infocont {
+  margin-top: 3%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infocont > section > h2,
+.infocont > section > section > h2 {
+  margin-bottom: 20px;
+}
+
+.infocont > section > pre,
+.infocont > section > section > pre {
+  font-size: 18px;
+}
+
+.infocont > form > button {
+  padding: 5px;
+  margin-top: 10px;
+}

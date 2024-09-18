@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/cart.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Cart {% endblock %} 
+{% block content %}
+<article>
+	<h1 style="margin-bottom: 20px;">Cart</h1>
+	<section class="cart">
+		{% if cart %}
+			{% for book in cart %}
+				<section>
+					<div>
+						<h3>{{ book.title }}</h3>
+						<h4>Author: {{book.author.surname}} {{book.author.name}}</h4>
+						<h4>Genre: {{book.genre.name}}</h4>
+						<h4>Ammount: {{book.ammount}}</h4>
+						<h3>Price: {{book.price}} BYN</h3>
+					</div>
+					<form class="del_btn" method="post" action="/cart/">
+						{% csrf_token %}
+						<button type="submit" name="action" value="add_{{ book.id }}">
+							<img src="{% static "images/plus.svg" %}" alt="delete" width="20" height="20" />
+						</button>
+						<button type="submit" name="action" value="del_{{ book.id }}">
+							<img src="{% static "images/trash.svg" %}" alt="delete" width="20" height="20" />
+						</button>
+					</form>
+				</section>
+			{% endfor %}
+		{% else %}
+			<p>Cart is empty...</p>
+		{% endif %}
+	</section>
+	{% if cart %}
+		<section style="margin-top: 10%; width: 95%; display: flex; justify-content: end;">
+			<form method="post" action="/orders/">
+				{% csrf_token %}
+				<button type="submit" name="action" value="pay" style="padding: 20px; font-size: 20px;">
+					Go To Checkout
+				</button>
+			</form>
+	   </section>
+	{% endif %}
+	{% if messages %}
+	   <section>
+        {% for message in messages %}
+			<div class="alert">
+				{{ message }}
+			</div>
+		{% endfor %}
+		</section>
+    {% endif %}
+</article>
+{% if messages %}
+<script>
+	const alerts = document.querySelectorAll('.alert');
+	setTimeout(() => {
+		alerts.forEach(alert => {
+			alert.style.opacity = '0';
+			setTimeout(() => alert.style.display = 'none', 500);
+		});
+	}, 5000);
+</script>
+{% endif %}
+{% endblock %}
