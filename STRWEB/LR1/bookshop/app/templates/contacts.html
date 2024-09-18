@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/contacts.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Contacts {% endblock %} 
+{% block content %}
+<article>
+  {% if form is None %}
+      {% if employees %}
+	  	<h2 style="margin-bottom: 20px;">Contact Us</h2>
+	  	{% for emp in employees %}
+			<div class="emp_card">
+				<section itemscope  itemtype = "http://schema.org/Person">
+					<img itemprop="image" src="{{emp.employeeinfo.img.url}}" width="150px" height="150px" alt=""/>
+					<section>
+						<h3 itemprop="name">{{emp.name}}</h3>
+						<h3 itemprop="globalLocationNumber">{{emp.phone}}</h3>
+						<h3 itemprop="email">{{emp.email}}</h3>
+						<pre itemprop = "jobTitle">{{emp.employeeinfo.description}}</pre>
+					</section>
+			    </section>
+				{% if role == 'adm' %}
+					<form method="post">
+						{% csrf_token %}
+						<button type="submit" name="action" value='upd_{{ emp.id }}'>Update</button>
+					</form>
+				{% endif %}
+			</div>
+		{% endfor %}
+	  {% else %}
+	  	<h2>No Employees...</h2>
+	  {% endif %}
+      {% if role == 'adm' and no_info %}
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" name="action" value="add">Add Employee Info</button>
+        </form>
+      {% endif %}
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <button type="submit" name="action" value="save_{{action}}">Save</button>
+    </form>
+  {% endif %}
+</article>
+{% endblock %}

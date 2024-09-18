@@ -1,0 +1,36 @@
+.user_info {
+  display: flex;
+  gap: 10px;
+}
+
+.user_info > form > button {
+  padding: 5px;
+}
+
+.order_list {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  padding: 5px 15px;
+  gap: 15px;
+}
+
+.order_list > div {
+  border-radius: 12px;
+  background-color: #fff;
+  border: 0.5px solid #cba6ff;
+  padding: 20px 10px;
+}
+
+.order_list > div > a {
+  font-size: 20px;
+  color: rgb(0, 138, 156);
+}
+
+.order_list > div > ul {
+  padding: 0 20px;
+}
+
+.order_list > div > ul > li {
+  padding: 5px;
+}

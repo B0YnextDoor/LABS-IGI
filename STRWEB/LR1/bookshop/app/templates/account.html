@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/account.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Account {% endblock %} 
+{% block content %}
+<article>
+	{% if form is None %}
+	 	<section class="user_info">
+			<section>
+				<h3>Name: {{user.name}}</h3>
+				<h3>Phone: {{user.phone}}</h>
+				<h3>Email: {{user.email}}</h3>
+			</section>
+			<form method="post">
+				{% csrf_token %}
+				<button type="submit" name="action" value="editMe">Edit</button>
+			</form>
+			<section style="margin-left: 10%;">
+				<h4>Time info</h4>
+				<p>Timezone: <time>{{ user.tz }}</time></p>
+				<p>UTC date: <time>{{ user.date_utc }}</time></p>
+				<p>Local date: <time>{{ user.date_local }}</time></p>
+				<section style="margin-top: 20px;">
+					<h4>Calendar</h4>
+					<pre>{{ user.calendar }}</pre>
+				</section>
+			</section>
+		</section>
+		{% if role == 'usr' %}
+			<section class="order_list">
+				{% if user.orders %}
+					{% for order in user.orders %}
+					<div>
+						<a href="{{ order.method }}">Order {{ order.cl_id }}</a>
+						<ul>
+							{% for book in order.books %}
+							<li>
+								<p>{{ book.title }}</p>
+								<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+								<p>Genre: {{book.genre.name}}</p>
+								<p>Ammount: {{book.quantity}}</p>
+								<p>Unit price: {{book.price}} BYN</p>
+							</li> 
+							{% endfor %}
+						</ul>
+						{% if order.status == '2' %}
+							<p style="color: rgb(4, 255, 0);"><strong>Canceled</strong></p>
+						{% else %}
+							<h4>Delivery date: {{ order.date }}</h4>
+							<h4>Delivery address: {{ order.address }}</h4>
+							{% if order.status == '1'  %}
+								<p style="color: blue;"><strong>Delivered</strong></p>
+							{% endif %}
+						{% endif %}
+					</div>
+					{% endfor %}
+				{% else %}
+				    <section>You haven't create any orders yet.</section>
+				{% endif %}
+			</section>
+		{% endif %}
+	{% else %}
+		<form method="post">
+			{% csrf_token %}
+			<table>
+				{{ form.as_table }}
+			</table>
+			<button type="submit" name="action" value="saveMe">Save</button>
+		</form>
+	{% endif %}
+</article>
+{% endblock %}
