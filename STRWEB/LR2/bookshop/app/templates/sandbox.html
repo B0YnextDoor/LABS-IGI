@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+ <link rel="stylesheet" href="{% static "css/sandbox.css" %}" />
+{% endblock %} 
+{% block title %} Testing HTML5 {% endblock %} 
+{% block content %}
+<article style="display: flex; flex-direction: column; gap: 20px;">
+ <section>
+	<h3 style="margin-bottom: 10px;">Wanna listen to some tunes?</h3>
+	<audio src="{% static 'about/music.mp3' %}" controls muted preload="metadata" type="audio/mp3"></audio>
+ </section> 
+ <section>
+	<h3>Hello <span contenteditable="true" style="padding: 5px">i'm editable</span>!</h3>
+ </section>
+ <section>
+	<h3>Listing exmaple</h3>
+	<pre><code>
+def ListingExample():
+	username = input("Enter name: ")
+	return f"<b>Hey</b> {username}, I'm <s>Scala</s> <strong>Python<sup>3</sup></strong> function inside <u>HTML</u><sub>5</sub> doc!"
+	</code></pre>
+	<p>The variable inside function is <var>username</var></p>
+	<p>Whern promt for my name, I typed: <kbd>SUNSHINE</kbd></p>
+	<p>The output of the function: <samp><b>Hey</b> SUNSHINE, I'm <s>Scala</s> <strong>Python<sup>3</sup></strong> function inside <u>HTML</u><sub>5</sub> doc!</samp></p>
+ </section>
+ <section>
+	<h3>
+		<abbr title="Belarusian State University of Informatics and Radioelectronics.">BSUIR</abbr>
+	</h3>
+	<p>for more info click <a href="#info">here</a></p>
+ </section>
+ <section translate="yes">
+	<dfn title="a high-level, general-purpose programming language">Python</dfn> is used everywhere nowadays.
+ </section>
+ <section lang="en">
+	<q>Accept who you are. Unless you’re a serial killer.</q>
+	<cite>(Ellen DeGeneres, Seriously… I’m Kidding)</cite>
+ </section>
+ <section lang="fr">
+	<q>L'avenir appartient à ceux qui croient en leurs rêves.</q>
+	<cite>Eleanor Roosevelt</cite>
+ </section>
+ <section lang="de">
+	<q>Zwei Dinge sind unendlich, das Universum und die menschliche Dummheit, aber bei dem Universum bin ich mir noch nicht ganz sicher.</q>
+	<cite>Albert Einstein</cite>
+ </section>
+ <section>
+	I accept congratulations on <time datetime="2004-09-21">September 21</time> from <time datetime="00:00">12:00 AM</time>
+ </section>
+ <section>
+	<p>
+		Я помню чудное мгновенье:<br>
+		Передо мной явилась ты,<br>
+		Как мимолетное виденье,<br>
+		Как гений чистой красоты.
+	<p>
+ </section>
+ <section>
+	<blockquote>
+	    My heart's in the Highlands,<wbr> my heart is not here<br>
+		My heart's in the Highlands<wbr> a-chasing the deer<br>
+		A-chasing the wild deer,<wbr> and following the roe<br>
+		My heart's in the Highlands<wbr> wherever I go
+	</blockquote>
+		<cite>Robert Burns</cite>
+ </section>
+ <section>
+	Хочешь стать программистом? <br>
+    <a href="https://abitur.bsuir.by/" target="_blank">Жми сюда!</a>
+ </section>
+ <section>
+	<a href="{% static 'about/about.mp4' %}" download="About BOOKY" type="mp4" rel="author">Скачать видео о нас</a>
+ </section>
+ <section style="margin-left: 3%;">
+	<ol type="A">
+		<li>first</li>
+		<li>second</li>
+		<li>third</li>
+	</ol>
+	<br>
+	<ol type="I" reversed>
+		<li>first</li>
+		<li>second</li>
+		<li>third</li>
+	</ol>
+	<br>
+	<ul>
+		<li>first</li>
+		<li>second</li>
+		<li>third</li>
+	</ul>
+ </section>
+ <section>
+	<dl>
+		<dt>HTML-документ</dt>
+		<dd>
+			Обычный текстовый файл, который может содержать...
+		  </dd>
+		  <dt>Сайт</dt>
+		  <dd>
+			Это набор отдельных веб-страниц, которые связаны
+			между собой ссылками и единым оформлением.
+		  </dd>
+		 
+	</dl>
+ </section>
+ <section>
+	<table border="1" class="my-table">
+		<thead>
+			<tr>
+				<th id="category" rowspan="2">Категория</th>
+				<th id="year" colspan="3">Год</th>
+				<th rowspan="2">Empty column</th> <!-- Пустой столбец -->
+			</tr>
+			<tr>
+				<th id="y2021">2021</th>
+				<th id="y2022">2022</th>
+				<th id="y2023">2023</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th id="sales" headers="category">Продажи</th>
+				<td headers="sales y2021">10,000</td>
+				<td headers="sales y2022">12,500</td>
+				<td headers="sales y2023">15,000</td>
+				<td></td> <!-- Пустая ячейка -->
+			</tr>
+			<tr>
+				<th id="profit" headers="category">Прибыль</th>
+				<td headers="profit y2021">2,500</td>
+				<td headers="profit y2022">3,200</td>
+				<td headers="profit y2023">4,000</td>
+				<td></td> <!-- Пустая ячейка -->
+			</tr>
+			<tr>
+				<th id="employees" headers="category">Сотрудники</th>
+				<td headers="employees y2021">50</td>
+				<td headers="employees y2022">60</td>
+				<td headers="employees y2023">75</td>
+				<td></td> <!-- Пустая ячейка -->
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th id="total" headers="category" colspan="5">Итого за 3 года</th>
+			</tr>
+			<tr>
+				<th headers="category total">Общие продажи</th>
+				<td headers="sales total" colspan="4">37,500</td>
+			</tr>
+		</tfoot>
+	</table>
+ </section>
+ <section>
+	<h2>Адаптивный котик</h2>
+	<img src="{% static 'images/cat-360px.png' %}" alt="Котик." 
+	srcset="{% static 'images/cat-360px.png' %} 360w, 
+			{% static 'images/cat-720px.png' %} 720w, 
+			{% static 'images/cat-1080px.png' %} 1080w"
+	sizes="(max-width: 360px) 360px, (max-width: 720px) 720px, 1080px">
+ </section>
+ <section>
+	<form id="registrationForm" method="post">
+        <h2>Регистрация</h2>
+		{% csrf_token %}
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Email">
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required minlength="8" placeholder="Password">
+
+        <label for="birthdate">Дата рождения:</label>
+        <input type="date" id="birthdate" name="birthdate" required placeholder="Birthdate">
+
+		<label for="disabled_ex">Disabled input:</label>
+		<input type="text" id="disabled_ex" name="disabled_ex" disabled placeholder="Disabled input"/>
+
+        <button type="submit" name="action" value="form1" class="btn">Зарегистрироваться</button>
+		<input type="reset" name="reset" />
+    </form>
+ </section>
+ {% if form1 %}
+ <section>
+	<h1>Результат формы регистрации</h1>
+	<p>Name: {{form1.username}}</p>
+	<p>Email: {{form1.email}}</p>
+	<p>Password: {{form1.password}}</p>
+	<p>Birthdate: {{form1.birthdate}}</p>
+ </section>
+ {% endif %}
+ <section>
+	<form id="surveyForm" method="post" enctype="multipart/form-data" accept="image/jpeg,image/png,image/gif">
+        <fieldset style="padding: 5px; display: flex; flex-direction: column; gap: 10px;">
+			<legend>Опрос</legend>
+		{% csrf_token %}
+        <label for="photo">Фото:</label>
+        <input type="file" id="photo" name="photo" required />
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" name="age" min="18" max="120" required>
+
+        <label for="gender">Пол:</label>
+        <select id="gender" name="gender" required class="sandbox-select">
+            <option value="">Выберите...</option>
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+            <option value="other">Другой</option>
+        </select>
+
+		<label for="color">Любимы цвет:</label>
+		<input type="color" id="color" name="color">
+
+        <fieldset>
+			<legend>Ваши интересы</legend>
+			<div>
+			  <input type="checkbox" id="flowers" name="interest" value="flowers" checked />
+			  <label for="flowers">Цветы</label>
+			</div>
+			<div>
+			  <input type="checkbox" id="music" name="interest" value="music" />
+			  <label for="music">Музыка</label>
+			</div>
+			<div>
+				<input type="checkbox" id="literature" name="interest" value="literature" />
+				<label for="literarure">Литература</label>
+			</div>
+			  <div>
+				<input type="checkbox" id="painting" name="interest" value="painting" />
+				<label for="painting">Живопись</label>
+			  </div>
+		  </fieldset>
+        <button type="submit" name="action" value="form2" class="btn">Отправить опрос</button>
+		<input type="reset" name="reset"/>
+	</fieldset>
+	</form>
+ </section>
+ {% if form2 %}
+ <section>
+	<h1>Результат формы опроса</h1>
+	<p>Photo: {{form2.photo}}</p>
+	<p>Age: {{form2.age}}</p>
+	<p>Gender: {{form2.gender}}</p>
+	<p>Color: {{form2.color}}</p>
+	{% if form2.interest %}
+		<p>Interests:</p>
+		<ul type="square">
+			{% for i in form2.interest %}
+			 	<li>{{i}}</li>
+			{% endfor %}
+		</ul> 
+	{% endif %}
+ </section>
+ {% endif %}
+ <section>
+	<form id="contactForm" method="post">
+        <h2>Контактная форма</h2>
+		{% csrf_token %}
+        <label for="phone">Телефон:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="0123456789" required>
+
+        <label for="subject">Тема:</label>
+		<section>
+			<input type="radio" name = "subject" value="general" checked/>Общий вопрос
+		</section>
+		<section>
+			<input type="radio" name = "subject" value="support" />Техническая поддержка
+		</section>
+		<section>
+			<input type="radio" name = "subject" value="billing" />Вопросы по оплате
+		</section>
+
+        <label for="message">Сообщение:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" name="action" value="form3">Отправить сообщение</button>
+		<input type="reset" name="reset"/>
+    </form>
+ </section>
+ {% if form3 %}
+ <section>
+	<h1>Результат контактной формы</h1>
+	<p>Phone: {{form3.phone}}</p>
+	<p>Subject: {{form3.subject}}</p>
+	<pre>Message: {{form3.message}}</pre>
+ </section>
+ {% endif %}
+ <p style="margin-top: 600px;"><a id="info"></a>БГУИР - ведущее высшее учебное заведение Республики Беларусь в области информационных технологий, радиотехники, электроники и телекоммуникаций, расположенное в Минске.</p>
+</article>
+{% endblock %}
