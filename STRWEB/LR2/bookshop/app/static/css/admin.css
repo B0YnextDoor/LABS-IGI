@@ -1,0 +1,78 @@
+.admincont {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pricelist {
+  display: grid;
+  padding: 0 10px;
+  grid-template-columns: repeat(4, auto);
+  gap: 15px;
+}
+
+.book_card,
+.cust_card {
+  position: relative;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #efefef;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.book_card > a {
+  text-decoration: none;
+  font-style: italic;
+  color: rgb(0, 94, 255);
+}
+
+.book_card > p {
+  opacity: 0.7;
+}
+
+.book_table_view,
+.user_table_view {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.user_table_view {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.stats_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stats_card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.stats_card > p {
+  font-size: 20px;
+}
+
+.sales_stat {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.sales_stat > section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sales_stat > section > h2 > span {
+  font-weight: bold;
+  color: #111;
+}

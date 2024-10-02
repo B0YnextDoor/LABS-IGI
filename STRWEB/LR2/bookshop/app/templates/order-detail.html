@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/order.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Details {% endblock %} 
+{% block content %}
+<article class="order-detail-cont">
+	{% if role != 'usr' %}
+		<h2>Only customer can see this page!</h2>
+	{% elif form is None %}
+	    <section class="order_detail">
+    		<h2>Order Info</h2>
+			<ul>
+				{% for book in order.books %}
+				<li>
+					<p>{{ book.title }}</p>
+					<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+					<p>Genre: {{book.genre.name}}</p>
+					<p>Ammount: {{book.quantity}}</p>
+					<span>Unit Price: {{book.price}} BYN</span>
+				</li> 
+				{% endfor %}
+			</ul>
+			{% if order.status == '2' %}
+				<span class="canceled"><strong>Canceled</strong></span>
+			{% else %}
+				<h4>Order date: {{ order.created_at }}</h4>
+				<h4>Delivery date: {{ order.date }}</h4>
+				<h4>Delivery address: {{ order.address }}</h4>
+				<h4>Sale: {{ order.sale }}%</h4>
+				<h4>Order price: {{ order.price }} BYN</h4>
+				{% if order.status == '1'  %}
+					<span class="delivered"><strong>Delivered</strong></span>
+				{% endif %}
+			{% endif %}
+		</section>
+		{% if order.status == '0' %}
+			<form class="user_order_actions" method="post">
+				{% csrf_token %}
+				<button type="submit" name="action" value="edit" class="btn">Edit</button>
+				<button type="submit" name="action" value="del" class="btn">Cancel</button>
+			</form>
+		{% endif %}
+	{% else %}
+	<section class="order-detail-form-section">
+		<h2>Edit order</h2>
+		<form action="" method="post" class="form form-order">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" name="action" value='save' />
+		</form>
+	</section>
+	{% endif %}
+</article>
+{% endblock %}

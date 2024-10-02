@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/about.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | About {% endblock %} 
+{% block content %}
+<section class="infocont">
+  {% if form is None %}
+    <h2>About Us</h2>
+    <section class="about-main-sec">
+      <img src="{{info.logo.url}}" alt="logo" width="150" class="logo"/>
+      <section>
+        <h3>{{ info.info }}</h3>
+        <section>
+          {% if role == 'adm' %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="action" value="upd" class="btn btn-admin">Update info</button>
+            </form>
+          {% endif %}
+        </section>
+      </section>
+    </section>
+    <section class="hist-vid-sec">
+      <section>
+        <h2>Video about us</h2>
+          <video width="600" height="340" controls muted poster="{% static "images/poster.jpg" %}">
+              <source src="{{info.video.url}}" type="video/mp4">
+              Ваш браузер не поддерживает видео.
+          </video>
+      </section>
+      <section>
+          <h2>Our history</h2>
+          <pre class="history">{{info.history}}</pre>
+      </section>
+    </section>
+    <section>
+        <h2>Shop requisites</h2>
+        <pre>{{info.requisites}}</pre>
+    </section>
+    <section>
+      <h2>Certificate</h2>
+      <article class="certificate-cont">
+        <div class="certificate-border"></div>
+        <div class="certificate-logo"></div>
+        <section class="certificate-head">
+          <h3>ЕДИНЫЙ РЕЕСТР МАГАЗИНОВ</h3>
+          <h2>СВИДЕТЕЛЬСТВО</h2>
+          <h3><small>о внесении сведений</small></h3>
+        </section>
+        <section class="certificate-body">
+          <section><div>{{info.certificate.0}}</div> <div>{{info.certificate.1}}</div></section>
+          <h3>Общество с ограниченной ответственностью <em>&laquoBOOKY&raquo</em></h3>
+          <p>{{info.certificate.2}}</p>
+          <h3 class="undr">{{info.certificate.3}}</h3>
+        </section>
+        <section class="certificate-footer">
+          <section>
+            <p>Важный Х.Б.</p>
+            <p>Директор Ассоциации "ЛИТЕРАТОРЫ"</p>
+          </section>
+          <div class="stamp"></div>
+          <hr>
+          <section class="btm">
+            <div class="certificate-logo small-logo"></div>
+            <section>
+              Ассоциация "Объединение книжных магазинов мира &laquoЛИТЕРАТОРЫ&raquo"<br>
+              123456 г. Минск, ул. Литературная д.10<br>
+              Тел. +375331234567<br>
+              literature@gmail.com<br>
+            </section>
+          </section>
+        </section>
+      </article>
+    </section>
+  {% else %}
+    <h2>Edit about info</h2>
+    <form method="post" enctype="multipart/form-data" class="form form-about">
+        {% csrf_token %}
+        {{ form }}
+      <button type="submit" name="action" value="save" class="btn btn-admin">Save</button>
+    </form>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/vacancy.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Vacancies {% endblock %} 
+{% block content %}
+<section>
+  {% if form is None %}
+      {% if vacancies %}
+	  	<h2>Vacancies</h2>
+	  	{% for vac in vacancies %}
+			<article class="vac_card">
+				<section>
+					<h2>{{vac.name}}</h2>
+					<pre>{{vac.description}}</pre>
+					<p>{{vac.updated_at.date}}</p>
+				</section>
+				{% if role == 'adm' %}
+					<form method="post">
+						{% csrf_token %}
+						<button type="submit" name="action" value='upd_{{ vac.id }}' class="btn btn-admin">Update</button>
+						<button type="submit" name="action" value='del_{{ vac.id }}' class="btn btn-admin">Delete</button>
+					</form>
+				{% endif %}
+			</article>
+		{% endfor %}
+	  {% else %}
+	  	<h2>No Vacancies...</h2>
+	  {% endif %}
+      {% if role == 'adm' %}
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" name="action" value="add" class="btn btn-admin">Add Vacancy</button>
+        </form>
+      {% endif %}
+  {% else %}
+   <section class="edit-vac-form-sec">
+	<h2>
+		{% if action == 'add' %}
+			Add
+		{% else %}
+			Edit
+		{% endif %}
+		vacancy
+	</h2>
+	<form method="post" class="form form-vacancy">
+        {% csrf_token %}
+        {{ form }}
+      	<button type="submit" name="action" value="save_{{action}}" class="btn btn-admin">Save</button>
+    </form>
+   </section>
+  {% endif %}
+</section>
+{% endblock %}

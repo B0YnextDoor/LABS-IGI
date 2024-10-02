@@ -1,0 +1,46 @@
+section > h2 {
+  margin-bottom: 20px;
+}
+
+.qa_card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+.qa_card > section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq-question > p {
+  opacity: 0.6;
+}
+
+.faq-question > summary {
+  color: rgb(0, 138, 156);
+  font-size: 24px;
+}
+
+.qa-form-sec {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-qa {
+  width: 50%;
+}
+
+.form-qa > button {
+  width: 30%;
+}

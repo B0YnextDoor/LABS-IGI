@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap");
+
+.infocont {
+  margin-top: 3%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+section > h2 {
+  margin-bottom: 20px;
+}
+
+.btn-admin {
+  margin-top: 10px;
+}
+
+[class^="about-"],
+[class|="hist"] {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
+
+.about-main-sec > section > h3 {
+  letter-spacing: 1.2px;
+  word-spacing: 7px;
+}
+
+.about-main-sec > section > section {
+  display: flex;
+  justify-content: end;
+}
+
+section > pre {
+  font-size: 18px;
+  font-family: "Archivo", system-ui;
+  font-style: oblique;
+}
+
+section > pre.history {
+  line-height: 2;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.infocont > section > video {
+  box-shadow: 2px 2px 3px 2px #cba980;
+  border-radius: 8px;
+}
+
+.form-about {
+  width: 80%;
+}
+
+.form-about > button {
+  width: 30%;
+}
+
+.form-about > div:nth-child(3),
+.form-about > div:nth-child(4) {
+  display: grid;
+  grid-template-columns: 28% 72%;
+  height: 15vh;
+  position: relative;
+  color: transparent;
+}
+
+[for="id_logo"],
+[for="id_video"] {
+  color: #111;
+  grid-column: 1;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.form-about > div:nth-child(3) > input[type="checkbox"],
+.form-about > div:nth-child(4) > input[type="checkbox"] {
+  display: none;
+}
+
+.form-about > div:nth-child(3) > a,
+.form-about > div:nth-child(4) > a {
+  grid-column: 2;
+  color: #111;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: font-size 0.3s ease-in-out;
+}
+
+.form-about > div:nth-child(3) > a::before,
+.form-about > div:nth-child(4) > a::before {
+  content: "Current: ";
+}
+
+.form-about > div:nth-child(3) > a:hover,
+.form-about > div:nth-child(4) > a:hover {
+  font-size: 17px;
+}
+
+input[type="file"] {
+  grid-column: 2;
+}
+
+[for="logo-clear_id"],
+[for="video-clear_id"] {
+  display: none;
+}
+
+.logo {
+  border-radius: 8px;
+  animation: logo-animation 2s ease-in-out 1s infinite alternate backwards;
+}
+
+@keyframes logo-animation {
+  0% {
+    transform: (1, 1);
+  }
+  100% {
+    transform: scale(1.2, 1.2);
+    box-shadow: 0px 0px 7px 2px #d4a770;
+  }
+}
+
+.certificate-cont {
+  position: relative;
+  padding: 10px;
+  z-index: 1;
+  width: 700px;
+  height: 1050px;
+}
+
+[class$="-border"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("http://localhost:8000/static/images/border.png");
+  background-size: cover;
+  z-index: -1;
+}
+
+[class*="certificate-logo"] {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-image: url("http://localhost:8000/static/images/books.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  z-index: -2;
+}
+
+.small-logo {
+  opacity: 1;
+  width: 20%;
+  height: 150%;
+  top: -15%;
+  left: 15%;
+  background-position: left;
+  z-index: 0;
+}
+
+.certificate-head,
+.certificate-body,
+.certificate-footer {
+  text-align: center;
+  margin-top: 20%;
+  line-height: 1.6;
+  font-family: "EB Garamond", serif;
+}
+
+.certificate-head > h3 {
+  font-size: 28px;
+  color: #d4a770;
+}
+
+.certificate-head > h2 {
+  font-size: 30px;
+}
+
+.certificate-body {
+  margin-top: 10%;
+}
+
+.certificate-body > p,
+.certificate-footer > section {
+  font-size: 20px;
+}
+
+.certificate-body > h3 {
+  font-size: 24px;
+}
+
+h3.undr {
+  text-decoration: underline;
+}
+
+.certificate-body > section {
+  margin-left: 7%;
+  width: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10%;
+  font-size: 20px;
+}
+
+.certificate-footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 20%;
+}
+
+.certificate-footer > section {
+  text-align: start;
+  margin-left: 10%;
+}
+
+section.btm {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  margin-left: 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+section.btm > section {
+  margin-top: 10%;
+  width: 60%;
+}
+
+.stamp {
+  position: absolute;
+  top: -57%;
+  left: 25%;
+  width: 90%;
+  height: 90%;
+  background-image: url("http://127.0.0.1:8000/static/images/stamp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -2;
+  opacity: 0.7;
+}
+
+.certificate-footer > hr {
+  width: 90%;
+  border: none;
+  align-self: center;
+  border-top: 3px double #d4a770;
+  color: #d4a770;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+  margin-block: 10px;
+}
+
+.certificate-footer > hr::after {
+  background: #efefef;
+  border: none;
+  content: "§";
+  padding: 0 4px;
+  position: relative;
+  top: -15px;
+}
