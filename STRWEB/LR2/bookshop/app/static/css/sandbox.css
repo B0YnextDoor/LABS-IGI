@@ -1,0 +1,158 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}
+
+form > button,
+input[type="reset"] {
+  width: 75.5%;
+}
+
+.my-table {
+  border-collapse: collapse;
+}
+
+td:empty {
+  background-color: #6e6262;
+}
+
+caption {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+td,
+th {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+td:empty {
+  background-color: #d3a98f;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td:first-child {
+  font-weight: bold;
+}
+
+th {
+  background-color: #fe8c00;
+  color: #111;
+}
+
+ul {
+  list-style-type: none;
+  margin-block: 0;
+  padding-inline: 0;
+}
+
+ul > li::before {
+  content: "\2605";
+  color: #ff0000;
+  margin-right: 5px;
+}
+
+li:first-child {
+  font-weight: bold;
+}
+li:last-child {
+  font-style: italic;
+}
+li:nth-child(2) {
+  color: orange;
+}
+
+:lang(en) q {
+  quotes: '"' '"';
+}
+:lang(fr) q {
+  quotes: "«" "»" "‹" "›";
+}
+:lang(de) q {
+  quotes: "„" '"' "‚" "'";
+}
+
+q:before {
+  content: open-quote;
+}
+q:after {
+  content: close-quote;
+}
+
+input {
+  height: 30px;
+  width: 70%;
+  font-size: 16px;
+  border-radius: 3px;
+  appearance: none;
+  padding: 9px 12px;
+}
+
+input:enabled {
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+}
+
+input:required,
+select:required {
+  border: 2px solid rgb(0, 89, 255);
+}
+
+input:disabled {
+  border: 5px double #ff9100;
+  background-color: #d4a770;
+  color: #fff;
+}
+
+input:valid,
+select:valid,
+input[type="number"]:in-range {
+  border: 2px solid green;
+}
+
+input[type="email"]:invalid {
+  border: 2px solid red;
+}
+
+input[type="reset"] {
+  cursor: pointer;
+  height: 40px;
+  border: 2px solid transparent;
+  transition: border-color 0.5s ease;
+}
+
+input[type="reset"]:hover {
+  border-color: #ff8c00;
+}
+
+input[type="number"]:out-of-range {
+  border: 2px solid rgb(183, 0, 255);
+}
+
+.sandbox-select:hover,
+.sandbox-select:focus {
+  box-shadow: none !important;
+}
+
+input[type="radio"] {
+  background-color: initial;
+  cursor: pointer;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 0px 5px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

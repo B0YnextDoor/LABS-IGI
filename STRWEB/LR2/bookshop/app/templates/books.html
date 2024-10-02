@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/books.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Catalog {% endblock %} 
+{% block content %}
+<section>
+	{% if form is None %}
+    	<h1>Books Catalog</h1>
+		<form method="get">
+			<input type="text" name="search" class="form-book-name" placeholder="Book title">
+			<button type="submit" class="btn btn-search">Search</button>
+		</form>
+    	{% if book_list %}
+	    	<section class="book-list">
+				<section id="book-grid">
+      				{% for book in book_list %}
+						<article class="book_card">
+							<a href="{{ book.get_absolute_url }}" id="link">{{ book.title }}</a>
+							<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+							<p>Genre: {{book.genre.name}}</p>
+							{% if book.amount > 0 %}
+								<p>Amount of books: {{book.amount}}</p>
+							{% else %}
+								<p class="col-blue">Out of stock!</p>
+							{% endif %}
+							<span>Price: {{book.price}} BYN</span>
+						</article> 
+      				{% endfor %}
+				</section>
+				<section class="sort_books">
+					<form method="post">
+						<div>Filter by:</div>
+						{% csrf_token %}
+						<button type="submit" name="sort_by" value="price" class="btn btn-filter">Price</button>
+						<button type="submit" name="sort_by" value="amount" class="btn btn-filter">Ammount</button>
+					</form>
+				</section>
+			</section>
+    	{% else %}
+    		<h2>There are no books in the catalog.</h2>
+    	{% endif %}
+		{% if role == 'adm' %}
+			<form method="post" class="add-book-cont">
+				{% csrf_token %}
+				<button type="submit" name="action" value="create" class="btn btn-admin">Add Book</button>
+			</form>
+		{% endif %}
+	{% else %}
+	<section class="add-book-form-section">
+		<h2>Add book</h2>
+		<form method="post" class="form form-add-book">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" name="action" value='save' class="btn btn-admin"/>
+		</form>
+	</section>
+	{% endif %}
+</section>
+{% endblock %}
