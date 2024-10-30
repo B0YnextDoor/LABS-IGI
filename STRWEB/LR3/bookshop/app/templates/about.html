@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/about.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | About {% endblock %} 
+{% block content %}
+<section class="infocont">
+  {% if form is None %}
+    <h2>About Us</h2>
+    <div class="scroll-container">
+      <section class="book-section">
+        <div class="book-shelf left" id="book1">
+          <img src="{% static 'images/book1.jpg' %}" alt="">
+        </div>
+        <div class="book-shelf right" id="book2">
+          <img src="{% static 'images/book2.jpg' %}" alt="">
+        </div>
+      </section>
+    </div>
+    <div class="scroll-container-letters">
+			<section class="letters-section">
+			  <div class="letter">A</div>
+			  <div class="letter">B</div>
+			  <div class="letter">C</div>
+			  <div class="letter">D</div>
+			  <div class="letter">E</div>
+			  <div class="letter">F</div>
+			  <div class="letter">G</div>
+			  <div class="letter">H</div>
+			  <div class="letter">I</div>
+			  <div class="letter">J</div>
+			  <div class="letter">K</div>
+			  <div class="letter">L</div>
+			  <div class="letter">M</div>
+			</section>
+		  </div>
+    <section class="about-main-sec">
+      <section class="logo-anim-sec">
+        <img src="{{info.logo.url}}" alt="logo" width="150" class="logo" id="logo-img"/>
+      </section>
+      <section class="info-control-sec">
+        <h3 id="info-text">{{ info.info }}</h3>
+        <section>
+          {% if role == 'adm' %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="action" value="upd" class="btn btn-admin">Update info</button>
+            </form>
+          {% endif %}
+        </section>
+      </section>
+    </section>
+    <section class="anim-btns">
+      <button id="slower" title="slower x2">
+        <img src="{% static 'images/faster.svg' %}" alt=""/>
+      </button>
+      <button id="play" title="play">
+        <img src="{% static 'images/play.svg' %}" alt="" />
+      </button>
+      <button id="pause" title="pause">
+        <img src="{% static 'images/pause.svg' %}" alt="" />
+      </button> 
+      <button id="cancel" title="cancel">
+        <img src="{% static 'images/stop.svg' %}" alt="" />
+      </button>
+      <button id="faster" title="faster x2">
+        <img src="{% static 'images/faster.svg' %}" alt=""/>
+      </button>
+    </section>
+    <section>
+      <h2>Video about us</h2>
+      <video width="600" height="340" controls muted poster="{% static "images/poster.jpg" %}">
+        <source src="{{info.video.url}}" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+      </video>
+    </section>
+    <section class="hist-req-sec">
+      <section>
+        <h2>Our history</h2>
+        <pre class="history">{{info.history}}</pre>
+      </section>
+      <section>
+        <h2>Shop requisites</h2>
+        <pre>{{info.requisites}}</pre>
+      </section>
+    </section>
+    <section>
+      <h2>Certificate</h2>
+      <article class="certificate-cont">
+        <div class="certificate-border"></div>
+        <div class="certificate-logo"></div>
+        <section class="certificate-head">
+          <h3>ЕДИНЫЙ РЕЕСТР МАГАЗИНОВ</h3>
+          <h2>СВИДЕТЕЛЬСТВО</h2>
+          <h3><small>о внесении сведений</small></h3>
+        </section>
+        <section class="certificate-body">
+          <section><div>{{info.certificate.0}}</div> <div>{{info.certificate.1}}</div></section>
+          <h3>Общество с ограниченной ответственностью <em>&laquoBOOKY&raquo</em></h3>
+          <p>{{info.certificate.2}}</p>
+          <h3 class="undr">{{info.certificate.3}}</h3>
+        </section>
+        <section class="certificate-footer">
+          <section>
+            <p>Важный Х.Б.</p>
+            <p>Директор Ассоциации "ЛИТЕРАТОРЫ"</p>
+          </section>
+          <div class="stamp"></div>
+          <hr>
+          <section class="btm">
+            <div class="certificate-logo small-logo"></div>
+            <section>
+              Ассоциация "Объединение книжных магазинов мира &laquoЛИТЕРАТОРЫ&raquo"<br>
+              123456 г. Минск, ул. Литературная д.10<br>
+              Тел. +375331234567<br>
+              literature@gmail.com<br>
+            </section>
+          </section>
+        </section>
+      </article>
+    </section>
+  {% else %}
+    <h2>Edit about info</h2>
+    <form method="post" enctype="multipart/form-data" class="form form-about">
+        {% csrf_token %}
+        {{ form }}
+      <button type="submit" name="action" value="save" class="btn btn-admin">Save</button>
+    </form>
+  {% endif %}
+</section>
+{% endblock %}
+{% block script %}
+  <script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

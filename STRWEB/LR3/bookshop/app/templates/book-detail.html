@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/books.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Details {% endblock %} 
+{% block content %}
+<article>
+	{% if role == '' %}
+		<h2>SignIn or SignUp to see this page!</h2>
+	{% elif form is None %}
+	    <section class="book_card_detail">
+    		<h2 class="title">{{book.title}}</h2>
+			<h3>{{book.author.surname}} {{book.author.name}}</h3>
+			<h3>{{book.genre.name}}</h3>
+			{% if book.amount > 0 %}
+					<h2 class="amount"><strong>{{book.amount}}</strong> left!</h2>
+			{% else %}
+					<h2 class="zero">Out of stock!</h2>
+			{% endif %}
+			{% if role == 'usr' and book.amount > 0 %}
+			<form method="post" action="/orders/">
+				{% csrf_token %}
+				<button type="submit" name="action" value="buy_{{ book.id }}">
+					{{book.price}} BYN
+					<section class="add-to-cart">
+						Add to Cart
+						<img src="{% static "images/cart-white.svg" %}" alt="cart" width="20" height="20" />
+				 	</section>
+				</button>
+			</form>
+			{% endif %}
+			{% if role == 'adm' %}
+				<form class="admin_book_actions" method="post">
+					{% csrf_token %}
+					<button type="submit" name="action" value="edit" class="btn btn-admin">Edit</button>
+					<button type="submit" name="action" value="del" class="btn btn-admin">Delete</button>
+				</form>
+			{% endif %}
+		</section>
+	{% else %}
+	<section class="add-book-form-section">
+		<h2>Edit book</h2>
+		<form action="" method="post" class="form form-add-book">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" name="action" value='save' class="btn btn-admin" />
+		</form>
+	</section>
+	{% endif %}
+</article>
+{% endblock %}

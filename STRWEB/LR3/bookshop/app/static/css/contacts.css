@@ -1,0 +1,324 @@
+article > h2 {
+  margin-bottom: 20px;
+}
+
+.emp_card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+.emp_card > section {
+  display: flex;
+  gap: 15px;
+}
+
+.emp_card > section > section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-form-sec {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-form-sec > h2 {
+  margin-bottom: 20px;
+}
+
+[class*="form-contacts"] {
+  width: 50%;
+}
+
+[class*="form-contacts"] > button {
+  width: 30%;
+}
+
+.form-contacts > div:nth-child(2) {
+  color: transparent;
+  display: grid;
+  grid-template-columns: 26% 74%;
+  position: relative;
+}
+
+.form-contacts > div:nth-child(2) > [for="id_image"] {
+  color: #111;
+  grid-column: 1;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.form-contacts > div:nth-child(2) > a {
+  grid-column: 2;
+  color: #111;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: font-size 0.3s ease-in-out;
+}
+
+.form-contacts > div:nth-child(2) > a::before {
+  content: "Current: ";
+}
+
+.form-contacts > div:nth-child(2) > a:hover {
+  font-size: 17px;
+}
+
+.form-contacts > div:nth-child(2) > input[type="file"] {
+  grid-column: 2;
+}
+
+.table {
+  width: 100%;
+  border: none;
+  margin-top: 20px;
+}
+
+.table thead th {
+  text-align: left;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  background: #d8d8d8;
+  font-size: 15px;
+}
+
+.table thead th button {
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  transition: font-size 0.5s ease;
+}
+
+.table thead th button:hover {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.table thead tr th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.table thead tr th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.table tbody td {
+  text-align: center;
+  padding: 5px 10px;
+  border: none;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #f3f3f3;
+}
+
+.table tbody tr td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.table tbody tr td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+#row-info-cont {
+  display: none;
+  margin-top: 20px;
+}
+
+#row-info-cont > h2 {
+  margin-bottom: 20px;
+}
+
+#row-info-cont > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sort-dir {
+  display: none;
+  position: relative;
+  top: 5px;
+}
+
+input.form-table-row {
+  width: 20%;
+  margin-top: 20px;
+  height: 30px;
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  appearance: none;
+  position: relative;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+input.form-table-row:focus {
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 0 #fff inset, #d4a770 0 0 0 3px;
+}
+
+input.form-table-row:hover {
+  box-shadow: 0 0 0 0 #fff inset, #d4a770 0 0 0 2px;
+}
+
+.btn-search {
+  margin-left: 10px;
+}
+
+.emp-form {
+  position: relative;
+}
+
+#close-form {
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  transition: all 0.3s ease;
+}
+
+#close-form:hover {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+}
+
+.emp-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#add-emp-form {
+  width: 50%;
+  display: none;
+}
+
+.file-input span {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #419152;
+  color: #fff;
+  line-height: 22px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  transition: background-color 0.2s;
+}
+
+.file-input input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+.input-file input[type="file"]:focus + span {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.file-input:hover span {
+  background-color: #59be6e;
+}
+.file-input:active span {
+  background-color: #2e703a;
+}
+
+#image-input-form-cont {
+  align-items: flex-start;
+}
+
+#image-input-cont {
+  width: 51.5%;
+  align-items: center;
+}
+
+.form > div:nth-last-child(3) {
+  margin-bottom: 0;
+}
+
+div[id$="-error"],
+div.form-error[id$="-error"] {
+  display: none;
+  color: crimson;
+  margin-bottom: 0;
+}
+
+.contact-table-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#bonus-cont {
+  display: none;
+}
+
+#bonus-cont h2 {
+  margin-bottom: 20px;
+}
+
+[id^="preloader"] {
+  display: none;
+}
+
+.preloader-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#no-msg {
+  display: "none";
+  margin-block: 20px;
+}
+
+.preloader.p-bonus {
+  width: 100px;
+  height: 100px;
+}
+
+.preloader.p-bonus > .square {
+  width: 50px;
+  height: 50px;
+  top: 25px;
+  left: 25px;
+}

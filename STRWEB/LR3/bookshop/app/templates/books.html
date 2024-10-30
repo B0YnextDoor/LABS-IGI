@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/books.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Catalog {% endblock %} 
+{% block content %}
+<section id="book-catalog">
+	{% if form is None %}
+    	<h1>Books Catalog</h1>
+		<section>
+			<input type="text" id="search" class="form-book-name" placeholder="Book title">
+			<button class="btn btn-search" onclick="searchBooks()">Search</button>
+		</section>
+		<section class="book-list" id="book-list">
+			<section>
+				<section id="book-grid"></section>
+				<section class="pagination" id="pagination"></section>
+			</section>
+			<section class="sort_books">
+				<div>Filter by:</div>
+				<button id="price" class="btn btn-filter">Price</button>
+				<button id="amount" class="btn btn-filter">Ammount</button>
+			</section>
+		</section>
+		<h2 id="empty-catalog">There are no books in the catalog.</h2>
+		{% if role == 'adm' %}
+			<form method="post" class="add-book-cont">
+				{% csrf_token %}
+				<button type="submit" name="action" value="create" class="btn btn-admin">Add Book</button>
+			</form>
+		{% endif %}
+	{% else %}
+	<section class="add-book-form-section">
+		<h2>Add book</h2>
+		<form method="post" class="form form-add-book">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" name="action" value='save' class="btn btn-admin"/>
+		</form>
+	</section>
+	{% endif %}
+</section>
+{% endblock %}
+{% block script %}
+	<script src="{% static 'js/catalog.js' %}"></script>
+{% endblock %}

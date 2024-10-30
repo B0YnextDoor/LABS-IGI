@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+ <link rel="stylesheet" href="{% static "css/sandbox.css" %}" />
+{% endblock %} 
+{% block title %} Cube Calculator {% endblock %} 
+{% block content %}
+<h1 style="margin-bottom: 20px;">Cube Calculator</h1>
+<section class="cube-section">
+    <section>
+        <h2>Functional Style</h2>
+        <form class="form cube-form" id="proto-form">
+            <div>
+                <label for="size-proto">Size (cm):</label>
+                <input type="number" id="size-proto" step="0.1" min="0" required>
+            </div>
+            
+            <div>
+                <label for="color-proto">Color:</label>
+                <select id="color-proto" required class="sandbox-select">
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="material-proto">Material:</label>
+                <select id="material-proto" required class="sandbox-select">
+                    <option value="wood">Wood</option>
+                    <option value="stone">Stone</option>
+                    <option value="iron">Iron</option>
+                    <option value="gold">Gold</option>
+                    <option value="diamond">Diamond</option>
+                    <option value="netherite">Netherite</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn cube-btn">Add Cube</button>
+        </form>
+        
+        <h2>Cubes:</h2>
+        <ul id="output-proto"></ul>
+        
+        <button id="proto-res" class="btn cube-btn">Calculate Result</button>
+        
+        <h2>Result:</h2>
+        <div id="result-proto"></div>
+    </section>
+    <section>
+        <h2>Class Style</h2>
+        <form class="form cube-form" id="class-form">
+            <div>
+                <label for="size-class">Size (cm):</label>
+                <input type="number" id="size-class" step="0.1" min="0" required>
+            </div>
+            
+            <div>
+                <label for="color-class">Color:</label>
+                <select id="color-class" required class="sandbox-select">
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="material-class">Material:</label>
+                <select id="material-class" required class="sandbox-select">
+                    <option value="wood">Wood</option>
+                    <option value="stone">Stone</option>
+                    <option value="iron">Iron</option>
+                    <option value="gold">Gold</option>
+                    <option value="diamond">Diamond</option>
+                    <option value="netherite">Netherite</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn cube-btn">Add Cube</button>
+        </form>
+        
+        <h2>Cubes:</h2>
+        <ul id="output-class"></ul>
+        
+        <button id="class-res" class="btn cube-btn">Calculate Result</button>
+        
+        <h2>Result:</h2>
+        <div id="result-class"></div>
+    </section>
+</section>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/cubeProto.js' %}"></script>
+    <script src="{% static 'js/cubeClass.js' %}"></script>
+{% endblock %}
