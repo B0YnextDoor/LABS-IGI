@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/contacts.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Contacts {% endblock %} 
+{% block content %}
+<article id="contacts-cont">
+  {% if form is None %}
+  	<h2>Contact Us</h2>
+	{% if role == 'adm' %}
+		<div id="table-actions" class="contact-table-actions">
+			<button id="add-emp-btn" class="btn btn-admin" onclick="addEmployee()">Add Employee</button>
+			<div>
+				<div id="preloader-bonus" class="preloader p-bonus">
+					<div class="square"></div>
+					<div class="square square_rev"></div>
+				</div>
+				<button id="bonus-emp" class="btn btn-admin" onclick="bonusEmployees()">Bonus employees</button>
+			</div>
+		</div>
+		<form id="add-emp-form" class="form emp-form" enctype="multipart/form-data" oninput="checkForm()">
+			<img onclick="closeForm()" id="close-form" src="{% static 'images/close-form.svg' %}" width="20px" height="20px" alt=""/>
+			{% csrf_token %}
+			<div>
+				<div>
+					<label>Full Name:</label>
+					<input type="text" id="name" name="name" required maxlength="50" placeholder="Enter full name..."/>
+				</div>
+				<div id="name-error"></div>
+			</div>
+			<div>
+				<div>
+					<label>Email:</label>
+					<input type="email" id="email" name="email" required placeholder="Enter email..."/>
+				</div>
+				<div id="email-error"></div>
+			</div>
+			<div>
+				<div>
+					<label>Phone:</label>
+					<input type="text" id="phone" name="phone" required maxlength="50" placeholder="Enter phone..."/>
+				</div>
+				<div id="phone-error"></div>
+			</div>
+			<div id="image-input-form-cont">
+				<div id="image-input-cont">
+					<label>Image:</label>
+					<label class="file-input">
+						<input type="file" id="image" name="image" required accept="image/*" />
+						<span id="filename">Choose image</span>
+					</label>
+				</div>
+				<div id="image-error"></div>
+			</div>
+			<div>
+				<div>
+					<label>CV:</label>
+					<input type="text" id="cv" name="cv" required placeholder="Enter a cv link..."/>
+				</div>
+				<div id="cv-error"></div>
+			</div>
+			<div>
+				<div>
+					<label>Job description:</label>
+					<textarea id="description" name="description" required placeholder="Enter job description..."></textarea>
+				</div>
+				<div id="description-error"></div>
+			</div>
+			<div id="add-emp-form-error" class="form-error"></div>
+			<button type="submit" id="submit-form-btn" class="btn btn-admin" disabled>Add employee</button>
+		</form>
+	{% endif %}
+	  <section id="contacts-section">
+		<section>
+			<input type="text" id="search" class="form-table-row" placeholder="Filtration text">
+			<button class="btn btn-search" onclick="filterContacts()">Search</button>
+		</section>
+		<table class="table" id="table">
+			<thead>
+				<tr>
+					<th>Choose</th>
+					<th>
+						<button value="name" id="sort-name">Full name 
+							<img class="sort-dir name" src="{% static 'images/sort-dir.svg'%}" alt="" width="20px" height="20px"/>
+						</button>
+					</th>
+					<th>
+						<button value="email" id="sort-email">
+							Email 
+							<img class="sort-dir email" src="{% static 'images/sort-dir.svg'%}" alt="" width="20px" height="20px"/>
+						</button>
+					</th>
+					<th>
+						<button value="phone" id="sort-phone">
+							Phone 
+							<img class="sort-dir phone" src="{% static 'images/sort-dir.svg'%}" alt="" width="20px" height="20px"/>
+						</button>
+					</th>
+					<th>
+						Photo
+					</th>
+					<th>
+						<button value="description" id="sort-descr">
+							Description 
+							<img class="sort-dir description" src="{% static 'images/sort-dir.svg'%}" alt="" width="20px" height="20px"/>
+						</button>
+					</th>
+					{% if role == 'adm' %}
+						<th id="update-col">Update</th>
+					{% endif %}
+				</tr>
+			</thead>
+			<tbody id="info-cont" itemscope  itemtype="http://schema.org/Person"></tbody>
+		</table>
+		<section class="pagination" id="pagination"></section>
+		<div id="row-info-cont">
+			<h2>Row info</h2>
+			<div id="row-info"></div>
+		</div>
+		<div id="bonus-cont">
+			<h2>Bonuses</h2>
+			<pre id="bonus-info"></pre>
+		</div>
+	  </section>
+	  <h2 id="no-msg">No Employees...</h2>
+	  <section class="preloader-section">
+		<div id="preloader" class="preloader">
+			<div class="square"></div>
+			<div class="square square_rev"></div>
+		</div>
+  	  </section>
+  {% else %}
+    <section class="info-form-sec">
+		<h2>
+			Edit employee info
+		</h2>
+		<form method="post" enctype="multipart/form-data" class="form form-contacts">
+			{% csrf_token %}
+			{{ form }}
+			<button type="submit" name="action" value="save_{{action}}" class="btn btn-admin">Save</button>
+		</form>
+	</section>
+{% endif %}
+</article>
+{% endblock %}
+{% block script %}
+	<script src="{% static 'js/contacts.js'%}"></script>
+{% endblock %}

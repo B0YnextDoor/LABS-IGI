@@ -1,0 +1,128 @@
+.admincont {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pricelist {
+  display: grid;
+  padding: 0 10px;
+  grid-template-columns: repeat(4, auto);
+  gap: 15px;
+}
+
+.book_card,
+.cust_card {
+  position: relative;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #efefef;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.book_card > a {
+  text-decoration: none;
+  font-style: italic;
+  color: rgb(0, 94, 255);
+}
+
+.book_card > p {
+  opacity: 0.7;
+}
+
+.book_table_view,
+.user_table_view {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.user_table_view {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.stats_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stats_card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.stats_card > p {
+  font-size: 20px;
+}
+
+.sales_stat {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.sales_stat > section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sales_stat > section > h2 > span {
+  font-weight: bold;
+  color: #111;
+}
+
+[id*="stats_chart"]:hover {
+  cursor: pointer;
+}
+
+figure {
+  position: relative;
+}
+
+figure > button {
+  position: absolute;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#city_chart_btn,
+#trand_chart_btn {
+  top: 10px;
+  left: 28%;
+}
+
+#sales_chart_btn,
+#incomes_chart_btn {
+  top: -10px;
+  left: 30%;
+}
+
+#incomes_chart_btn {
+  left: 25%;
+}
+
+#trand_chart_btn {
+  left: 18%;
+}
+
+figure > button:hover {
+  cursor: pointer;
+}
+
+figcaption {
+  font-size: 18px;
+  font-family: monospace;
+  margin-block: 20px;
+}

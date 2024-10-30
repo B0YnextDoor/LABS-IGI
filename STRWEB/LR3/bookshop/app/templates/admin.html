@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/admin.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Admin {% endblock %} 
+{% block content %}
+<section>
+	{% if role != 'adm'%}
+		<h2>Only admin can see this page</h2>
+	{% else %}
+		<section class="admincont">
+			<h2 style="margin-top: 5%;">Pricelist</h2>
+			<section class="pricelist">
+				{% if books %}
+					{% for book in books %}
+					<article class="book_card">
+						<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+						<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+						<p>Genre: {{book.genre.name}}</p>
+						{% if book.amount > 0 %}
+							<p>Amount of books: {{book.amount}}</p>
+						{% else %}
+							<span style="color: blue;">Out of stock!</span>
+						{% endif %}
+						<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
+					</article>
+					{% endfor %}
+				{% else %}
+					<h2>Catalog is empty!</h2>
+				{% endif %}
+			</section>
+			<h2>Customers Statistics</h2>
+			<section class="stats_list">
+				{% if customers %}
+					{% for city, users in customers.items %}
+						<article class="stats_card">
+							<p>{{ city }}:</p>
+							<section class="user_table_view">
+							{% for user in users %}
+								<section class="cust_card">
+									<h5>Name: {{ user.name }}</h5>
+									<h5>Phone: {{ user.phone }}</h5>
+									<h5>Email: {{ user.email }}</h5>
+								</section>
+							{% endfor%}
+						    </section>
+						</article>
+					{% endfor %}
+					<figure>
+						<figcaption>Статистика покупателей по городам.</figcaption>
+						<canvas id="city_stats_chart"></canvas>
+						<button id="city_chart_btn">
+							<img src="{% static 'images/graph.svg' %}" alt="" width="20px" height="20px"/>
+						</button>
+					</figure>
+				{% else %}
+					<h2>No customers!</h2>
+				{% endif %}
+			</section>
+			<h2>Sales Statistics</h2>
+			<section class="sales_stat">
+				<section>
+					<h2>Most popular book(-s): <span>{{most.0.1}} sales</span></h2>
+					{% for book, sales in most %}
+						<article class="book_card">
+							<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+							<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+							<p>Genre: {{book.genre.name}}</p>
+							{% if book.amount > 0 %}
+								<p>Amount of books: {{book.amount}}</p>
+							{% else %}
+								<p style="color: blue;">Out of stock!</p>
+							{% endif %}
+							<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
+						</article>
+					{% endfor %}
+				</section>
+				{% if least %}
+					<section>
+						<h2>Least popular book(-s): <span>{{least.0.1}} sales</span></h2>
+						{% for book, sales in least %}
+							<article class="book_card">
+								<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+								<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+								<p>Genre: {{book.genre.name}}</p>
+								<p>Amount of books: {{book.amount}}</p>
+								<span style="font-weight: bold; letter-spacing: 1px;">Price: {{book.price}} BYN</span>
+							</article>
+						{% endfor %}
+					</section>
+				{% endif %}
+			</section>
+			<h2>Month Statistics</h2>
+			<section class="stats_list">
+				{% for month, stats in month_stats.items %}
+					<section class="stats_card">
+						<span>{{ month }}:</span>
+						{% if stats %}
+						    <section class="book_table_view">
+							{% for book, sales in stats %}
+								<article class="book_card">
+									<a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+									<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+									<p>Genre: {{book.genre.name}}</p>
+									<span style="font-weight: bold; letter-spacing: 1px;">
+										Amount of sales: {{ sales }}
+									</span>
+								</article>
+							{% endfor %}
+						    </section>
+						{% else %}
+							<p style="font-style: italic; align-self: center;">No statistics</p>
+						{% endif %}
+					</section>
+				{% endfor %}
+				<section>
+					<figure>
+						<figcaption>Статистика объёма продаж по месяцам.</figcaption>
+						<canvas id="sales_stats_chart"></canvas>
+						<button id="sales_chart_btn">
+							<img src="{% static 'images/graph.svg' %}" alt="" width="20px" height="20px"/>
+						</button>
+					</figure>
+					<figure>
+						<figcaption>Статистика доходов по месяцам.</figcaption>
+						<canvas id="incomes_stats_chart"></canvas>
+						<button id="incomes_chart_btn">
+							<img src="{% static 'images/graph.svg' %}" alt="" width="20px" height="20px"/>
+						</button>
+					</figure>
+				</section>
+			</section>
+			<h2>Current year income: {{ income }} BYN</h2>
+			{% if forecast > 0 %}
+				<h2>Sales forecast: {{ forecast }} books</h2>
+				<figure>
+					<figcaption>График тренда продаж.</figcaption>
+					<canvas id="trand_stats_chart"></canvas>
+					<button id="trand_chart_btn">
+						<img src="{% static 'images/graph.svg' %}" alt="" width="20px" height="20px"/>
+					</button>
+				</figure>
+			{% else %}
+				<h2>Not enough inforamtion to create a forecast</h2>
+			{% endif %}
+		</section>
+	{% endif %}
+</section>
+{% endblock %}
+{% block script %}
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="{% static 'js/admin.js' %}"></script>
+{% endblock %}

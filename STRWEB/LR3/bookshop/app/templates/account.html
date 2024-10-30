@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/account.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | Account {% endblock %} 
+{% block content %}
+<section>
+	{% if form is None %}
+	 	<section class="user_info">
+			<article>
+				<h3>Name: {{user.name}}</h3>
+				<h3>Phone: {{user.phone}}</h>
+				<h3>Email: {{user.email}}</h3>
+			</article>
+			<form method="post">
+				{% csrf_token %}
+				<button type="submit" name="action" value="editMe" class="btn">Edit</button>
+			</form>
+			<article class="tz-info">
+				<section>
+					<h4>Time info</h4>
+					<p>Timezone: <time>{{ user.tz }}</time></p>
+					<p>UTC date: <time>{{ user.date_utc }}</time></p>
+					<p>Local date: <time>{{ user.date_local }}</time></p>
+					<br/>
+					<h4>Location info</h4>
+					<div id="location-info"></div>
+					<br/>
+					<div id="battery-info">
+						<h4>Battery info</h4>
+					</div>
+				</section>
+				<section>
+					<h4>Calendar</h4>
+					<pre>{{ user.calendar }}</pre>
+				</section>
+			</article>
+		</section>
+		{% if role == 'usr' %}
+			<section class="order_list">
+				{% if user.orders %}
+					{% for order in user.orders %}
+					<article>
+						<a href="{{ order.method }}">Order {{ order.cl_id }}</a>
+						<ul>
+							{% for book in order.books %}
+							<li>
+								<p>{{ book.title }}</p>
+								<p>Author: {{book.author.surname}} {{book.author.name}}</p>
+								<p>Genre: {{book.genre.name}}</p>
+								<p>Amount: {{book.quantity}}</p>
+								<p>Unit price: {{book.price}} BYN</p>
+							</li> 
+							{% endfor %}
+						</ul>
+						{% if order.status == '2' %}
+							<p class="canceled"><strong>Canceled</strong></p>
+						{% else %}
+							<h4>Delivery date: {{ order.date }}</h4>
+							<h4>Delivery address: {{ order.address }}</h4>
+							{% if order.status == '1'  %}
+								<p class="delivered"><strong>Delivered</strong></p>
+							{% endif %}
+						{% endif %}
+					</article>
+					{% endfor %}
+				{% else %}
+				    <section>You haven't create any orders yet.</section>
+				{% endif %}
+			</section>
+		{% endif %}
+	{% else %}
+	<section class="acc-form-section">
+		<h2>Edit prodile</h2>
+		<form method="post" class="form form-acc">
+			{% csrf_token %}
+			{{ form }}
+			<button type="submit" name="action" value="saveMe" class="btn">Save</button>
+		</form>
+	</section>
+	{% endif %}
+</section>
+{% endblock %}
+{% block script %}
+	<script src="{% static 'js/account.js' %}"></script>
+{% endblock %}

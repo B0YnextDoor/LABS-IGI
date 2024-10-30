@@ -1,0 +1,169 @@
+.news_card {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 60%;
+}
+
+.news-detail {
+  max-width: none;
+  width: 100%;
+}
+
+.news_card > article > a {
+  color: #003560;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+.news_card > article > a:visited {
+  color: violet;
+}
+
+.news_card > article > a:hover {
+  font-size: 18px;
+}
+
+.news_card > article > a::after {
+  content: "...";
+  position: absolute;
+  opacity: 0;
+  right: -20px;
+  transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+.news_card > article > a:hover::after {
+  opacity: 1;
+  right: -18px;
+}
+
+.edit-book-sec {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-book-btn {
+  position: absolute;
+  top: 5%;
+  right: 2px;
+}
+
+.add-book-form,
+.edit-book-form {
+  width: 50%;
+}
+
+.add-book-form > button,
+.edit-book-form > button {
+  width: 30%;
+}
+
+section > h2,
+article > h3 {
+  margin-bottom: 20px;
+}
+
+article > h3.summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 378px;
+  white-space: nowrap;
+}
+
+article > h3:not(.summary) {
+  column-count: 2;
+  column-gap: 10px;
+}
+
+.admin-book-actions {
+  display: flex;
+  gap: 30px;
+}
+
+.edit-book-form > div:nth-child(4) {
+  color: transparent;
+  display: grid;
+  grid-template-columns: 26% 74%;
+  position: relative;
+}
+
+.edit-book-form > div:nth-child(4) > [for="id_img"] {
+  color: #111;
+  grid-column: 1;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.edit-book-form > div:nth-child(4) > a {
+  grid-column: 2;
+  color: #111;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: font-size 0.3s ease-in-out;
+}
+
+.edit-book-form > div:nth-child(4) > a::before {
+  content: "Current: ";
+}
+
+.edit-book-form > div:nth-child(4) > a:hover {
+  font-size: 17px;
+}
+
+.edit-book-form > div:nth-child(4) > input[type="file"] {
+  grid-column: 2;
+}
+
+#img-clear_id,
+[for="img-clear_id"] {
+  display: none;
+}
+
+.news-detail-cont {
+  display: grid;
+  grid-template-columns: 65% 30%;
+  gap: 10px;
+}
+
+.control-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.control-item {
+  width: 100%;
+}
+
+#toggle-controls {
+  margin-top: 5px;
+  position: relative;
+  top: 5px;
+}
+
+.control-item:not([class*="toggle"]) {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#controls {
+  width: 100%;
+}
