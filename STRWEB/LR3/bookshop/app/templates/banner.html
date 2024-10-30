@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshop | Banner</title>
+    <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+</head>
+<body>
+    {% if form is None %}
+        <div class="slider-container">
+            <div class="slider" id="slider">
+                <div class="slides">
+                    <div class="slide" data-title="Banner 1">
+                        <a href="https://skyeng.ru/" target="_blank">
+                            <img src="{% static 'images/banner1.png' %}" alt="Banner 1">
+                        </a>
+                    </div>
+                    <div class="slide" data-title="Banner 2">
+                        <a href="https://bbminsk.by/" target="_blank">
+                            <img src="{% static 'images/banner2.png' %}" alt="Banner 2">
+                        </a>
+                    </div>
+                    <div class="slide" data-title="Banner 3">
+                        <a href="https://vasilki.by/" target="_blank">
+                            <img src="{% static 'images/banner3.png' %}" alt="Banner 3">
+                        </a>
+                    </div>
+                    <div class="slide" data-title="Banner 4">
+                        <a href="https://shop.cravt.by/" target="_blank">
+                            <img src="{% static 'images/banner4.png' %}" alt="Banner 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="pagination"></div>
+                <div class="slide-info">
+                    <span class="slide-counter"></span>
+                    <span class="slide-title"></span>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'js/banner.js' %}"></script>
+    {% else %}
+        <section class="banner-form-section">
+            <div class="back-ref"><a href="/" class="animated-link banner-link">Back to main</a></div>
+            <h2>Edit banner settings</h2>
+            <form method="post" class="form banner-form">
+                {% csrf_token %}
+			    {{ form }}
+			    <input type="submit" name="action" value='save' class="btn btn-admin"/>
+            </form>
+        </section>
+    {% endif %}
+</body>
+</html>

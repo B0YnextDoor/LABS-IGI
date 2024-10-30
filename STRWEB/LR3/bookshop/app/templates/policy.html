@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Bookshop | Policy {% endblock %} 
+{% block content %}
+<section>
+	<p style="margin: 20px 0; font-family: monospace;">
+		Welcome to <em>BOOKY</em>, a very cool bookshop with your favourite authors!
+	</p>
+	<section style="margin-bottom: 20px;">
+		<h4 style="margin-bottom: 10px;">Take a rest and enjoy...</h4>
+		{% if fact %}
+			<p style="margin-bottom: 5px;">Fact about cats: {{ fact.fact }}</p>
+		{% else %}
+			<h4>Fetching fact error.</h4>
+		{% endif %}
+		{% if joke %}
+			<section style="display: flex; flex-direction: column; width: 40%; margin-top: 10px;">
+				<p style="font-weight: bold;">{{joke.setup}}</p>
+				<p style="margin-top: 5px; align-self: flex-end;">{{joke.punchline}}</p>
+			</section>
+		{% else %}
+			<h4>Fetching joke error.</h4>
+	    {% endif %}
+	</section>
+	<p style="opacity: 0.6;">© BOOKY 2024.<br/> All rights reserved.</p>
+</section>
+{% endblock %}

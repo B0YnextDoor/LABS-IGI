@@ -1,0 +1,58 @@
+{# Django Template #}
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/qa.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | FAQ {% endblock %} 
+{% block content %}
+<section>
+  {% if form is None %}
+      {% if qas %}
+	  	<h2>FAQ</h2>
+	  	{% for qa in qas %}
+			<article class="qa_card">
+				<section>
+					<details class="faq-question">
+						<summary><b>{{qa.question}}</b></summary>
+						<h3>{{qa.answer}}</h3>
+					</details>
+					<p>Added: {{qa.updated_at.date}}</p>
+				</section>
+				{% if role == 'adm' %}
+					<form method="post">
+						{% csrf_token %}
+						<button type="submit" name="action" value='upd_{{ qa.id }}' class="btn btn-admin">Update</button>
+						<button type="submit" name="action" value='del_{{ qa.id }}' class="btn btn-admin">Delete</button>
+					</form>
+				{% endif %}
+			</article>
+		{% endfor %}
+	  {% else %}
+	  	<h2>No FAQ...</h2>
+	  {% endif %}
+      {% if role == 'adm' %}
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" name="action" value="add" class="btn btn-admin">Add QA</button>
+        </form>
+      {% endif %}
+  {% else %}
+  <section class="qa-form-sec">
+	<h2>
+		{% if action == 'add' %}
+			Add
+		{% else %}
+			Edit
+		{% endif %}
+		QA
+	</h2>
+	<form method="post" class="form form-qa">
+        {% csrf_token %}
+        {{ form }}
+      <button type="submit" name="action" value="save_{{action}}" class="btn btn-admin">Save</button>
+    </form>
+  </section>
+  {% endif %}
+</section>
+{% endblock %}

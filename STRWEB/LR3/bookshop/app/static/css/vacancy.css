@@ -1,0 +1,54 @@
+section > h2 {
+  margin-bottom: 20px;
+}
+
+.vac_card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px #a9a9a9;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+/* .vac_card > section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+} */
+
+.vac_card > section > h2 {
+  color: rgb(98, 130, 255);
+  float: left;
+}
+
+.vac_card > section > pre {
+  font-variant-numeric: tabular-nums;
+  clear: left;
+  margin-bottom: 8px;
+}
+
+.vac_card > section > p {
+  opacity: 0.6;
+  font-variant-caps: small-caps;
+}
+
+.edit-vac-form-sec {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-vacancy {
+  width: 50%;
+}
+
+.form-vacancy > button {
+  width: 30%;
+}

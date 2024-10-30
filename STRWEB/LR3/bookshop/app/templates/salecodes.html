@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/salecodes.css" %}" />
+{% endblock %} 
+{% block title %} Bookshop | About {% endblock %} 
+{% block content %}
+<article>
+	{% if form is None %}
+		{% if role == "" %}
+			<h2 class="sale-spec">SignIn or SignUp to see this page!</h2>
+        {% else %}
+		{% if codes %}
+			{% if role == 'adm' %}
+				<h2>All sale codes</h2>
+				{% for code in codes %}
+			 		<div class="codescont">
+						<p>{{ code.order }}. <em>{{ code.code }}</em> - <b><mark>sale {{ code.sale }}%</mark></b> - 
+						<span>
+							{% if code.is_active %}
+								Active
+							{% else %}
+								Disabled
+							{% endif %}
+						</span>
+						</p>
+						<form method="post">
+							{% csrf_token %}
+							{% if code.is_active %}
+								<button type="submit" name="action" value='upd_{{ code.id }}' class="btn btn-admin">Disable</button>
+							{% else %}
+								<button type="submit" name="action" value='upd_{{ code.id }}' class="btn btn-admin">Activate</button>
+							{% endif %}
+							<button type="submit" name="action" value="del_{{ code.id }}" class="btn btn-admin ">Delete</button>
+						</form>
+					</div>
+				{% endfor %}
+			{% else %}
+				<h2>Current Sales</h2>
+				<section>
+					{% for code in codes %}
+						<p>{{ code.order }}. 
+							<a href="{% url 'catalog' %}">
+								<i>{{ code.code }}</i>
+							</a> - <b><mark>sale {{ code.sale }}%</mark></b>
+						</p>
+					{% endfor %}
+				</section>
+			{% endif %}
+		{% else %}
+			<h3>No sale codes!</h3>
+		{% endif %}
+		{% if role == 'adm'%}
+			<form class="add_code" method="post">
+				{% csrf_token %}
+				<input type="submit" name="action" value="add" class="btn btn-admin btn-add">
+			</form>
+		{% endif %}
+		{% endif %}
+	{% else %}
+		<section class="add-code-form-sec">
+			<h2>Add sale code</h2>
+			<form action="" method="post" class="form form-codes">
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" name="action" value='save' class="btn btn-admin" />
+			</form>
+		</section>
+	{% endif %}
+</article>
+{% endblock %}
