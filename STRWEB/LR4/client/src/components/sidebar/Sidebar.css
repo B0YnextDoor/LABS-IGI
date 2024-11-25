@@ -1,0 +1,52 @@
+.router {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background: #d4a770;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 20px 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: space-around;
+  height: 100%;
+  width: 13%;
+}
+
+.router > section {
+  width: 100%;
+  padding-left: 15%;
+}
+
+.router > section > a > img {
+  margin-bottom: 20px;
+  transition-duration: 0.3s;
+  border-radius: 999%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.router > section > a > img:hover {
+  box-shadow: 0 8px 16px #ffffff33;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 10px;
+  font-family: monospace;
+  color: #111;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  font-size: 21px;
+}

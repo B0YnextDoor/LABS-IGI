@@ -1,0 +1,114 @@
+.contacts-page {
+  width: 100%;
+  height: 100%;
+  padding-block: 1%;
+}
+
+.contacts-page h1 {
+  font-size: 2em;
+  margin-bottom: 2%;
+}
+
+.contacts-table {
+  width: 100%;
+  border: none;
+  margin-top: 2%;
+}
+
+.contacts-table thead th {
+  text-align: left;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  background: #d8d8d8;
+  font-size: 15px;
+  transition: font-size 0.5s ease;
+}
+
+.contacts-table thead th:hover {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.contacts-table thead tr th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.contacts-table thead tr th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.contacts-table tbody td {
+  text-align: center;
+  padding: 5px 10px;
+  border: none;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
+.contacts-table tbody tr:nth-child(even) {
+  background: #f3f3f3;
+}
+
+.contacts-table tbody tr td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.contacts-table tbody tr td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.add-emp {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  min-height: 60px;
+}
+
+.add-form-cont {
+  position: relative;
+  width: 50%;
+  margin-bottom: 2%;
+}
+
+.close-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.emp-order {
+  position: relative;
+  top: 5px;
+}
+
+.emp-order.rotate {
+  transform: rotateX(0.5turn);
+}
+
+.search-emps {
+  display: flex;
+  gap: 2%;
+  width: 40%;
+}
+
+.upd-emp-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.upd-emp-cont .emp-form {
+  width: 50%;
+}
+
+.back-to-emps {
+  position: absolute;
+  top: 3%;
+  left: 1%;
+}
