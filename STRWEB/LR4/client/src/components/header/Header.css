@@ -1,0 +1,32 @@
+header {
+  padding: 2% 1%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 70px;
+  overflow: hidden;
+}
+
+.cart-icon {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 0.3s ease;
+}
+
+.cart-link:hover .cart-icon {
+  left: 5px;
+}

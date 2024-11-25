@@ -1,0 +1,33 @@
+.preloader {
+  margin-top: 20px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.square {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  left: 50px;
+  border: 2px solid rgb(0, 178, 0);
+  animation-name: rotate-clockwise;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.square_rev {
+  border-color: red;
+  animation-direction: reverse;
+}
+
+@keyframes rotate-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,129 @@
+.order-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-order-page {
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 1%;
+}
+
+.order-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.order-page h2 {
+  font-size: 1.3rem;
+}
+
+.order-items,
+.orders-list {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  gap: 1%;
+  margin-bottom: 2%;
+}
+
+.orders-list,
+.order-books {
+  grid-template-columns: repeat(2, 49%);
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 15px 10px;
+  gap: 20px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.list-item {
+  gap: 10px;
+}
+
+.order-item * {
+  margin: 0;
+}
+
+.order-item h3 {
+  font-size: 1.3rem;
+  font-family: monospace;
+  font-weight: 800;
+}
+
+.order-item .title {
+  max-width: 95%;
+}
+
+.order-item h4,
+.order-item p {
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+
+.order-item span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 6px 6px 20px rgba(0, 0, 0, 0.9);
+}
+
+.order-item-control {
+  position: absolute;
+  height: 25px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 5px;
+  right: 15px;
+}
+
+.order-item-control button {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.order-books {
+  display: grid;
+  gap: 1%;
+  margin-bottom: 2%;
+}
+
+.back-to-cart {
+  width: 95%;
+}
+
+.order-price {
+  width: 150%;
+  text-align: end;
+}
+
+.create-order-form {
+  width: 50%;
+}
+
+.create-order-content {
+  width: 100%;
+  padding-left: 20%;
+}
+
+.approve-order {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.update-order-form {
+  margin-top: 3%;
+  width: 80%;
+}

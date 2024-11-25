@@ -1,0 +1,35 @@
+.pagination {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination > button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d4a770;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #111;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.pagination > button:hover:not(:disabled),
+.pagination > button.active {
+  background-color: rgb(227, 227, 227);
+  border-width: 2px;
+}
+.pagination > button:not(:first-child) {
+  margin-left: 10px;
+}
+
+.pagination > button:disabled {
+  background-color: #e1e1e1;
+  cursor: not-allowed;
+}

@@ -1,0 +1,71 @@
+.review-page {
+  width: 100%;
+  height: 100%;
+}
+
+.review-page h1 {
+  font-size: 2rem;
+  margin-bottom: 2%;
+}
+
+.rev-list {
+  width: 100%;
+}
+
+.add-rev {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1%;
+}
+
+.rev-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 75%;
+}
+
+.rev-card * {
+  margin: 0;
+}
+
+.rev-card > section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rev-card > section > h2 {
+  color: rgb(98, 130, 255);
+}
+
+.rev-card > section > h4::before {
+  content: "Rate: ";
+}
+
+.rev-card > section > h4::after {
+  content: "/5";
+}
+
+.rev-card > section > p {
+  opacity: 0.6;
+}
+
+.rev-form-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ret-to-revs {
+  width: 90%;
+}
+
+.rev-form {
+  width: 50%;
+}
