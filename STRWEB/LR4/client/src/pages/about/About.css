@@ -1,0 +1,316 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap");
+
+.infocont {
+  padding: 10px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+section > h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.btn-admin {
+  margin-top: 10px;
+}
+
+[class^="about-"],
+[class|="hist"] {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
+
+.about-main-sec > section > h3 {
+  letter-spacing: 1.2px;
+  word-spacing: 7px;
+}
+
+.info-control-sec > section {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+section > pre {
+  font-size: 18px;
+  font-family: "Archivo", system-ui;
+  font-style: oblique;
+}
+
+section > pre.history {
+  line-height: 2;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.logo {
+  border-radius: 8px;
+}
+
+.anim-btns {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.anim-btns > button {
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  background-color: #cbcbcb;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.anim-btns > button:hover,
+.anim-btns > button:active {
+  background-color: #aeaeae;
+}
+
+.anim-btns > button > img {
+  width: 20px;
+  height: 20px;
+}
+
+#slower {
+  transform: rotate(0.25turn);
+}
+
+#faster {
+  transform: rotate(-0.25turn);
+}
+
+.infocont > section > video {
+  box-shadow: 2px 2px 3px 2px #cba980;
+  border-radius: 8px;
+}
+
+.certificate-cont {
+  position: relative;
+  padding: 10px;
+  z-index: 1;
+  width: 700px;
+  height: 1050px;
+}
+
+[class$="-border"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/about/border.png");
+  background-size: cover;
+  z-index: -1;
+}
+
+[class*="certificate-logo"] {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-image: url("/about/books.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  z-index: -2;
+}
+
+.small-logo {
+  opacity: 1;
+  width: 20%;
+  height: 120%;
+  top: -15%;
+  left: 15%;
+  background-position: left;
+  z-index: 0;
+}
+
+.certificate-head,
+.certificate-body,
+.certificate-footer {
+  text-align: center;
+  margin-top: 20%;
+  line-height: 1.6;
+  font-family: "EB Garamond", serif;
+}
+
+.certificate-head > h3 {
+  font-size: 28px;
+  color: #d4a770;
+}
+
+.certificate-head > h2 {
+  font-size: 30px;
+}
+
+.certificate-body {
+  margin-top: 10%;
+}
+
+.certificate-body > p,
+.certificate-footer > section {
+  font-size: 20px;
+}
+
+.certificate-body > h3 {
+  font-size: 24px;
+}
+
+h3.undr {
+  text-decoration: underline;
+}
+
+.certificate-body > section {
+  margin-left: 7%;
+  width: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10%;
+  font-size: 20px;
+}
+
+.certificate-footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 20%;
+  margin-top: 10%;
+}
+
+.certificate-footer > section {
+  text-align: start;
+  margin-left: 10%;
+}
+
+section.btm {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  margin-left: 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+section.btm > section {
+  margin-top: 1%;
+  font-size: 0.9em;
+  width: 60%;
+}
+
+.stamp {
+  position: absolute;
+  top: -45%;
+  left: 25%;
+  width: 80%;
+  height: 80%;
+  background-image: url("/about/stamp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -2;
+  opacity: 0.7;
+}
+
+.certificate-footer > hr {
+  width: 90%;
+  border: none;
+  align-self: center;
+  border-top: 3px double #d4a770;
+  color: #d4a770;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+  margin-block: 10px;
+}
+
+.certificate-footer > hr::after {
+  background: #efefef;
+  border: none;
+  content: "§";
+  padding: 0 4px;
+  position: relative;
+  top: -15px;
+}
+
+.scroll-container {
+  z-index: -10;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.book-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-shelf {
+  position: relative;
+  transition: transform 0.5s ease-out;
+  width: 100%;
+}
+
+.book-shelf img {
+  width: 100%;
+  height: 100%;
+}
+
+.book-shelf.left {
+  transform: translateX(0);
+}
+
+.book-shelf.right {
+  transform: translateX(0);
+}
+
+.scroll-container-letters {
+  z-index: -12;
+  position: absolute;
+  top: -5%;
+  left: 0;
+  width: 100%;
+  opacity: 0.7;
+  height: 100vh;
+}
+
+.letters-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.letter {
+  font-size: 10rem;
+  font-weight: bold;
+  color: #d4a770;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.letter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

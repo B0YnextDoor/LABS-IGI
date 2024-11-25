@@ -1,0 +1,97 @@
+.slider_container {
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slider {
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide > a > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.slider_controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.prev_btn,
+.next_btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+.prev_btn {
+  margin-left: 5px;
+}
+
+.next_btn {
+  margin-right: 5px;
+}
+
+.prev_btn:hover,
+.next_btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.pagination div {
+  width: 10px;
+  height: 10px;
+  background-color: #40d3dc;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.pagination div.active {
+  background-color: #ff4b5c;
+}
+
+.slide_info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #ff4b5c;
+  font-size: 18px;
+}
+
+.slide_counter {
+  font-weight: bold;
+}
+
+.slide_title {
+  margin-left: 10px;
+}
